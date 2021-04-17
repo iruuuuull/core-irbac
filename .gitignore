@@ -34,4 +34,4 @@ user_guide_src/cilexer/pycilexer.egg-info/*
 .env
 
 # Ignoring uploads directory
-/web/uploads/
+/web/uploads/*
