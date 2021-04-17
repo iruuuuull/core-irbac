@@ -1,0 +1,149 @@
+<script src="https://maps.googleapis.com/maps/api/js?key=<?= getEnv('GMAP_API_KEY') ?>" async defer></script>
+
+<script type="text/javascript" id="script-map">
+	var maps = document.getElementById("map-location-preview");
+	var long, lat;
+	var mapsLoaded = false;
+
+	$(document).ready(function() {
+		myLoader();
+
+		setInterval(() => {
+			if (long == null || lat == null) {
+				getLocation();
+			} else {
+				if (mapsLoaded === false) {
+					initMap();
+				}
+			}
+		}, 1000);
+	});
+
+	function getLocation() {
+		if (navigator.geolocation) {
+			navigator.geolocation.getCurrentPosition(showPosition);
+		} else { 
+			maps.innerHTML = "Geolocation tidak mendukung pada perambanan ini.";
+		}
+	}
+
+	function showPosition(position) {
+		lat = position.coords.latitude;
+		long = position.coords.longitude;
+
+		let coordinate = {
+			lat: lat,
+			long: long,
+		};
+
+		$('#attendance-coordinate').val(JSON.stringify(coordinate));
+
+		getGeocode(coordinate);
+	}
+
+	// Note: This example requires that you consent to location sharing when
+	// prompted by your browser. If you see the error "The Geolocation service
+	// failed.", it means you probably did not give permission for the browser to
+	// locate you.
+	let map, infoWindow;
+
+	function initMap() {
+		map = new google.maps.Map(maps, {
+			center: {lat: lat, lng: long},
+			zoom: 17,
+		});
+		new google.maps.Marker({
+			position: {lat: lat, lng: long},
+			map,
+			// title: "Hello World!",
+		});
+
+		infoWindow = new google.maps.InfoWindow();
+		const locationButton = document.createElement("button");
+		locationButton.textContent = "Geser ke lokasi saat ini";
+		locationButton.classList.add("custom-map-control-button");
+		map.controls[google.maps.ControlPosition.TOP_CENTER].push(locationButton);
+		locationButton.addEventListener("click", () => {
+			// Try HTML5 geolocation.
+			if (navigator.geolocation) {
+				navigator.geolocation.getCurrentPosition(
+					(position) => {
+						const pos = {
+							lat: position.coords.latitude,
+							lng: position.coords.longitude,
+						};
+
+						infoWindow.setPosition(pos);
+						infoWindow.setContent("Lokasi ditemukan.");
+						infoWindow.open(map);
+						map.setCenter(pos);
+					},
+					() => {
+						handleLocationError(true, infoWindow, map.getCenter());
+					}
+				);
+			} else {
+				// Browser doesn't support Geolocation
+				handleLocationError(false, infoWindow, map.getCenter());
+			}
+		});
+
+		google.maps.event.addListener( map, 'idle', function() {
+	        mapsLoaded = true;
+	    });
+	}
+
+	function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+		infoWindow.setPosition(pos);
+		infoWindow.setContent(
+			browserHasGeolocation
+				? "Error: Geolocation service gagal."
+				: "Error: Browser anda tidak mendukung geolocation."
+		);
+		infoWindow.open(map);
+	}
+
+	function getGeocode(coordinate) {
+		$.ajax({
+			url: `https://maps.googleapis.com/maps/api/geocode/json?latlng=${coordinate.lat},${coordinate.long}&key=<?= getEnv('GMAP_API_KEY') ?>`,
+			type: 'GET',
+			dataType: 'json',
+		})
+		.done(function(data) {
+			$("#attend-location").text(data.results.formatted_address);
+
+			$('#attendance-location').val(data.results.formatted_address);
+		})
+		.fail(function(e) {
+			console.log(e);
+		})
+		.always(function() {
+			myLoader(false);
+		});
+		
+	}
+</script>
+
+<script type="text/javascript" id="script-general">
+	$(document).ready(function() {
+		getCurrentTime();
+
+		setInterval(() => {
+			getCurrentTime();
+		}, 1000 * 60);
+	});
+
+	function getCurrentTime() {
+		let d = new Date();
+		let months = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
+		let days = ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jum'at", "Sabtu"];
+
+		let date = d.getDate() +' '+ months[d.getMonth()] +' '+ d.getFullYear();
+		let time = ('0' + d.getHours()).slice(-2) +'<span class="blinking">:</span>'+ ('0' + d.getMinutes()).slice(-2);
+		let ampm = d.getHours() >= 12 ? 'PM' : 'AM';
+
+		$(".attend-date").html(days[d.getDay()] +', '+date);
+		$(".attend-mini-date").html(`Jadwal, ${date}`);
+		$(".attend-time").html(time +` ${ampm}`);
+	}
+</script>
