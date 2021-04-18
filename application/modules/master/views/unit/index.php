@@ -1,18 +1,16 @@
+<section class="content-header">
+    <h1><?= $title ?></h1>
+</section>
+
 <div class="row">
     <div class="col-md-12">
-        <div class="portlet light bordered">
-            <div class="portlet-body">
-            	<div class="table-toolbar">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="btn-group">
-                                <button id="btn-add" class="btn sbold btn-primary"> Tambah
-                                    <i class="fa fa-plus"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        <div class="card light bordered">
+            <div class="card-body">
+            	<div class="btn-group float-right mb-3 mr-2 clearfix">
+                    <button id="btn-add" class="btn sbold btn-primary"> Tambah
+                        <i class="fa fa-plus"></i>
+                    </button>
+                </div><br/><br/><br/>
 
             	<table class="table table-striped table-bordered table-hover dt-responsive" width="100%" id="table-unit">
                     <thead>
