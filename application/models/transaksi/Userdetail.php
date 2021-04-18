@@ -18,7 +18,6 @@ class Userdetail extends MY_Model {
 			'master/grade',
 			'master/gradingtype',
 			'master/designation',
-			'transaksi/attendance',
 		]);
 	}
 
@@ -158,18 +157,6 @@ class Userdetail extends MY_Model {
  		}
 
  		return $summaries;
- 	}
-
- 	public function attendanceByDate($date)
- 	{
- 		return $this->attendance->setAlias('ta')->find()
- 					->select('ta.*')
- 					->join('tbl_calendar as tc', 'tc.id = ta.calendar_id', 'left')
- 					->where([
- 						'tc.date' => date('Y-m-d', strtotime($date)),
- 						'ta.user_id' => $this->user_id
- 					])
- 					->get()->row();
  	}
 
  	public function grade()
