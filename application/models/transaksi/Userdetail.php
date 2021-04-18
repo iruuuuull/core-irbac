@@ -355,7 +355,7 @@ class Userdetail extends MY_Model {
 
 	public function getImage()
 	{
-		$default = '/web/assets/pages/img/no_avatar.jpg';
+		$default = '/web/images/no_avatar.jpg';
 		$img = $default;
 
 		if ($this->profile_pic) {

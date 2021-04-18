@@ -85,10 +85,10 @@
 					<li class="nav-item dropdown user-menu">
 				        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
 							<?php if (!empty($this->session->userdata('detail_identity')->profile_pic)): ?>
-                            <img src="<?= base_url($this->session->userdata('detail_identity')->profile_pic) ?>"
+                            <img src="<?= $this->session->userdata('detail_identity')->profile_pic ?>"
                             	class="user-image img-circle elevation-2" alt="User Image" />
                             <?php else: ?>
-                            <img src="<?= base_url('/web/assets/pages/img/no_avatar.jpg') ?>"
+                            <img src="<?= base_url('/web/images/no_avatar.jpg') ?>"
                             	class="user-image img-circle elevation-2" alt="User Image" />
                             <?php endif ?>
 
@@ -98,7 +98,7 @@
 							<!-- User image -->
 							<li class="user-header bg-primary">
 								<?php if (!empty($this->session->userdata('detail_identity')->profile_pic)): ?>
-	                            <img src="<?= base_url($this->session->userdata('detail_identity')->profile_pic) ?>"
+	                            <img src="<?= $this->session->userdata('detail_identity')->profile_pic ?>"
 	                            	class="img-circle elevation-2" alt="User Image" />
 	                            <?php else: ?>
 	                            <img src="<?= base_url('/web/assets/pages/img/no_avatar.jpg') ?>"
