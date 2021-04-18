@@ -231,7 +231,7 @@
 
         <!-- OVERLAY LOADER -->
         <div id="overlay" style="display: none;">
-            <img src="<?= base_url('/web/assets/global/img/ajax-loading.gif') ?>" alt="Loading" /><br/>
+            <img src="<?= base_url('/web/images/ajax-loading.gif') ?>" alt="Loading" /><br/>
             Memuat...
         </div> 
         <!-- OVERLAY LOADER -->
