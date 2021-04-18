@@ -1,29 +1,11 @@
-<!-- BEGIN GLOBAL MANDATORY STYLES -->
-<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css" />
-<link href="<?= base_url("/web/assets/global/plugins/font-awesome/css/font-awesome.min.css") ?>" rel="stylesheet" type="text/css" />
-<link href="<?= base_url("/web/assets/global/plugins/simple-line-icons/simple-line-icons.min.css") ?>" rel="stylesheet" type="text/css" />
-<link href="<?= base_url("/web/assets/global/plugins/bootstrap/css/bootstrap.min.css") ?>" rel="stylesheet" type="text/css" />
-<link href="<?= base_url("/web/assets/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css") ?>" rel="stylesheet" type="text/css" />
-<!-- END GLOBAL MANDATORY STYLES -->
-<!-- BEGIN PLUGIN STYLE -->
-<link href="<?= base_url("/web/assets/global/plugins/bootstrap-sweetalert/sweetalert.css") ?>" rel="stylesheet" type="text/css" />
-<link href="<?= base_url("/web/assets/global/plugins/ladda/ladda-themeless.min.css") ?>" rel="stylesheet" type="text/css" />
-<link href="<?= base_url('/web/assets/global/plugins/bootstrap-daterangepicker/daterangepicker.min.css') ?>" rel="stylesheet" type="text/css" />
-<link href="<?= base_url('/web/assets/global/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css') ?>" rel="stylesheet" type="text/css" />
-<link href="<?= base_url('/web/assets/global/plugins/bootstrap-timepicker/css/bootstrap-timepicker.min.css') ?>" rel="stylesheet" type="text/css" />
-<link href="<?= base_url('/web/assets/global/plugins/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css') ?>" rel="stylesheet" type="text/css" />
-<link href="<?= base_url('/web/assets/global/plugins/clockface/css/clockface.css') ?>" rel="stylesheet" type="text/css" />
-
-<!-- END PLUGIN STYLE -->
-<!-- BEGIN THEME GLOBAL STYLES -->
-<link href="<?= base_url("/web/assets/global/css/components.min.css") ?>" rel="stylesheet" id="style_components" type="text/css" />
-<link href="<?= base_url("/web/assets/global/css/plugins.min.css") ?>" rel="stylesheet" type="text/css" />
-<!-- END THEME GLOBAL STYLES -->
-<!-- BEGIN THEME LAYOUT STYLES -->
-<link href="<?= base_url("/web/assets/layouts/layout/css/layout.min.css") ?>" rel="stylesheet" type="text/css" />
-<link href="<?= base_url("/web/assets/layouts/layout/css/themes/darkblue.min.css") ?>" rel="stylesheet" type="text/css" id="style_color" />
-<link href="<?= base_url("/web/assets/layouts/layout/css/custom.min.css") ?>" rel="stylesheet" type="text/css" />
-<!-- END THEME LAYOUT STYLES -->
+<!-- Font Awesome -->
+<link rel="stylesheet" href="<?= base_url('/web/assets/plugins/fontawesome-free/css/all.min.css') ?>">
+<!-- Ionicons -->
+<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+<!-- overlayScrollbars -->
+<link rel="stylesheet" href="<?= base_url('/web/assets/css/adminlte.min.css') ?>">
+<!-- Google Font: Source Sans Pro -->
+<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 
 <style type="text/css">
 	.page-content {

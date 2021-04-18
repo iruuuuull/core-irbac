@@ -3,264 +3,239 @@
 <!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
 <!--[if !IE]><!-->
 <html lang="en">
-    <!--<![endif]-->
-    <!-- BEGIN HEAD -->
+	<!--<![endif]-->
+	<!-- BEGIN HEAD -->
+	<head>
+		<meta charset="utf-8" />
+		<title>
+			<?= $title .' | '. getEnv('APP_FULLNAME') ?>
+		</title>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta content="width=device-width, initial-scale=1" name="viewport" />
+		<meta content="<?= env('APP_FULL_NAME') ?>" name="description" />
+		<meta content="<?= env('APP_COPYRIGHT') .' '. env('APP_COMPANY') ?>" name="author" />
 
-    <head>
-        <meta charset="utf-8" />
-        <title>
-            <?= $title .' | '. getEnv('APP_FULLNAME') ?>
-        </title>
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta content="width=device-width, initial-scale=1" name="viewport" />
-        <meta content="<?= getenv('APP_FULL_NAME') ?>" name="description" />
-        <meta content="<?= getenv('APP_COPYRIGHT') .' '. getenv('APP_COMPANY') ?>" name="author" />
+		<?php $this->load->view('layouts/main_css') ?>
+	</head>
+	<!-- END HEAD -->
 
-        <?php $this->load->view('layouts/main_css') ?>
+	<body class="hold-transition sidebar-mini">
+		<!-- Site wrapper -->
+		<div class="wrapper">
+			<!-- Navbar -->
+			<nav class="main-header navbar navbar-expand navbar-white navbar-light">
+				<!-- Left navbar links -->
+				<ul class="navbar-nav">
+					<li class="nav-item">
+						<a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+					</li>
+				</ul>
 
-    <!-- END HEAD -->
+				<!-- Right navbar links -->
+				<ul class="navbar-nav ml-auto">
+					<!-- Notifications Dropdown Menu -->
+					<?php $notifikasi = $this->session->userdata('notifikasi'); ?>
+					<li class="nav-item dropdown">
+						<a class="nav-link" data-toggle="dropdown" href="#">
+							<i class="far fa-bell"></i>
 
-    <body class="page-header-fixed page-sidebar-closed-hide-logo page-content-white">
-        <div class="page-wrapper">
-            <!-- BEGIN HEADER -->
-            <div class="page-header navbar navbar-fixed-top">
-                <!-- BEGIN HEADER INNER -->
-                <div class="page-header-inner ">
-                    <!-- BEGIN LOGO -->
-                    <div class="page-logo">
-                        <a href="<?= site_url('/site') ?>">
-                            <img src="<?= base_url("/web/images/Logo_HRIS.png") ?>" alt="logo" class="logo-default" /> </a>
-                        <div class="menu-toggler sidebar-toggler">
-                            <span></span>
+							<?php if ($notifikasi['new'] > 0): ?>
+                            <span class="badge badge-warning navbar-badge"> <?= $notifikasi['new'] ?> </span>
+                            <?php endif ?>
+						</a>
+						<div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+							<span class="dropdown-item dropdown-header"><?= $notifikasi['all'] ?> Notifikasi</span>
+							<div class="dropdown-divider"></div>
+
+							<?php if ($notifikasi['all'] > 0): ?>
+
+                                <?php foreach ($notifikasi['list'] as $key => $value): ?>
+                                    <a href="<?= $value->redirect_url ? $value->redirect_url : 'javascript:;' ?>" data-id="<?= $value->id ?>" class="dropdown-item">
+										<!-- Message Start -->
+										<div class="media">
+											<div class="media-body">
+												<p class="text-sm <?= $value->is_read == 0 ?: 'bold' ?>"><?= $value->content ?></p>
+												<time class="time timeago" 
+		                                            datetime="<?= date(DATE_ISO8601, strtotime($value->created_at)) ?>">
+		                                                <?= date('d M Y', strtotime($value->created_at)) ?></time>
+												<!-- <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p> -->
+											</div>
+										</div>
+										<!-- Message End -->
+									</a>
+                                <?php endforeach ?>
+
+                            <?php else: ?>
+
+                                <a href="javascript:;" class="dropdown-item">
+									<!-- Message Start -->
+									<div class="media">
+										<div class="media-body">
+											<p class="text-sm">Tidak ada pemberitahuan</p>
+										</div>
+									</div>
+									<!-- Message End -->
+								</a>
+
+                            <?php endif; ?>
+							<div class="dropdown-divider"></div>
+							<a href="<?= site_url('/notifikasi') ?>" class="dropdown-item dropdown-footer">Lihat Semua Notifikasi</a>
+						</div>
+					</li>
+					<li class="nav-item dropdown user-menu">
+				        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
+							<?php if (!empty($this->session->userdata('detail_identity')->profile_pic)): ?>
+                            <img src="<?= base_url($this->session->userdata('detail_identity')->profile_pic) ?>"
+                            	class="user-image img-circle elevation-2" alt="User Image" />
+                            <?php else: ?>
+                            <img src="<?= base_url('/web/assets/pages/img/no_avatar.jpg') ?>"
+                            	class="user-image img-circle elevation-2" alt="User Image" />
+                            <?php endif ?>
+
+							<span class="d-none d-md-inline"><?= $this->session->userdata('identity')->username; ?></span>
+				        </a>
+						<ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+							<!-- User image -->
+							<li class="user-header bg-primary">
+								<?php if (!empty($this->session->userdata('detail_identity')->profile_pic)): ?>
+	                            <img src="<?= base_url($this->session->userdata('detail_identity')->profile_pic) ?>"
+	                            	class="img-circle elevation-2" alt="User Image" />
+	                            <?php else: ?>
+	                            <img src="<?= base_url('/web/assets/pages/img/no_avatar.jpg') ?>"
+	                            	class="img-circle elevation-2" alt="User Image" />
+	                            <?php endif ?>
+
+								<p>
+									<?= $this->session->userdata('identity')->username; ?>
+									<!-- <small>Member since Nov. 2012</small> -->
+								</p>
+							</li>
+							<!-- Menu Footer-->
+							<li class="user-footer">
+								<a href="<?= site_url('/profil') ?>" class="btn btn-default btn-flat float-left">Profile</a>
+								<a href="<?= site_url('/site/logout') ?>" class="btn btn-default btn-flat float-right">Sign out</a>
+							</li>
+						</ul>
+			      	</li>
+				</ul>
+		  	</nav>
+		  	<!-- /.navbar -->
+
+			<!-- Main Sidebar Container -->
+			<aside class="main-sidebar sidebar-dark-primary elevation-4">
+				<!-- Brand Logo -->
+				<a href="<?= site_url('/site/') ?>" class="brand-link">
+					<img src="<?= base_url('/web/images/Logo.png') ?>"
+						alt="AdminLTE Logo"
+						class="brand-image img-circle elevation-3"
+						style="opacity: .8">
+					<span class="brand-text font-weight-light"><?= env('APP_NAME') ?></span>
+				</a>
+
+				<!-- Sidebar -->
+				<div class="sidebar">
+					<!-- Sidebar Menu -->
+					<nav class="mt-2">
+						<ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+							<li class="nav-item has-treeview">
+								<a href="#" class="nav-link">
+									<i class="nav-icon fas fa-tachometer-alt"></i>
+									<p>Dashboard
+										<i class="right fas fa-angle-left"></i></p>
+								</a>
+								<ul class="nav nav-treeview">
+									<li class="nav-item">
+										<a href="../../index.html" class="nav-link">
+											<i class="far fa-circle nav-icon"></i>
+											<p>Dashboard v1</p>
+										</a>
+									</li>
+								</ul>
+							</li>
+							<li class="nav-item">
+								<a href="../widgets.html" class="nav-link">
+									<i class="nav-icon fas fa-th"></i>
+									<p>Widgets
+									<span class="right badge badge-danger">New</span></p>
+								</a>
+							</li>
+						</ul>
+				  	</nav>
+				  	<!-- /.sidebar-menu -->
+				</div>
+			<!-- /.sidebar -->
+		 	</aside>
+
+			<!-- Content Wrapper. Contains page content -->
+			<div class="content-wrapper">
+				<!-- Content Header (Page header) -->
+				<?php /*<section class="content-header">
+					<div class="container-fluid">
+						<div class="row mb-2">
+							<div class="col-sm-6">
+								<h1><?= $title ?></h1>
+							</div>
+							<div class="col-sm-6">
+								<ol class="breadcrumb float-sm-right">
+									<li class="breadcrumb-item"><a href="#">Home</a></li>
+									<li class="breadcrumb-item active">Blank Page</li>
+								</ol>
+							</div>
+						</div>
+					</div><!-- /.container-fluid -->
+				</section> */ ?><br/>
+
+				<!-- Main content -->
+				<section class="content">
+
+					<!-- BEGIN ALERT FLASHDATA -->
+                    <?php if ($this->session->flashdata('danger')): ?>
+                        <div class="alert alert-danger alert-dismissible" style="margin-top: 10px">
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            <?= $this->session->flashdata('danger'); ?>
                         </div>
-                    </div>
-                    <!-- END LOGO -->
-                    <!-- BEGIN RESPONSIVE MENU TOGGLER -->
-                    <a href="javascript:;" class="menu-toggler responsive-toggler" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span></span>
-                    </a>
-                    <!-- END RESPONSIVE MENU TOGGLER -->
-                    <!-- BEGIN TOP NAVIGATION MENU -->
-                    <div class="top-menu">
-                        <ul class="nav navbar-nav pull-right">
-                            <!-- BEGIN INBOX DROPDOWN -->
-                            <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
-                            <?php $notifikasi = $this->session->userdata('notifikasi'); ?>
-                            <li class="dropdown dropdown-extended dropdown-notification" id="header_notification_bar">
-                                <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-                                    <i class="icon-bell"></i>
+                    <?php endif ?>
 
-                                    <?php if ($notifikasi['new'] > 0): ?>
-                                    <span class="badge badge-default"> <?= $notifikasi['new'] ?> </span>
-                                    <?php endif ?>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li class="external">
-                                        <h3>
-                                            <span class="bold"><?= $notifikasi['new'] ?></span> Notifikasi Tertunda</h3>
-                                        <a href="<?= site_url('/notifikasi') ?>">Lihat semua</a>
-                                    </li>
-                                    <li>
-                                        <ul class="dropdown-menu-list scroller" style="height: 250px;" data-handle-color="#637283">
-
-                                            <?php if ($notifikasi['all'] > 0): ?>
-
-                                                <?php foreach ($notifikasi['list'] as $key => $value): ?>
-                                                    <li>
-                                                        <a href="<?= $value->redirect_url ? $value->redirect_url : 'javascript:;' ?>" data-id="<?= $value->id ?>">
-                                                            <time class="time timeago" 
-                                                                datetime="<?= date(DATE_ISO8601, strtotime($value->created_at)) ?>">
-                                                                    <?= date('d M Y', strtotime($value->created_at)) ?></time>
-
-                                                            <span class="details <?= $value->is_read == 0 ? 'bold' : '' ?>">
-                                                                <!-- <span class="label label-sm label-icon <?= $value->priority ?>"></span> -->
-                                                                <?= $value->content ?> </span>
-                                                        </a>
-                                                    </li>
-                                                <?php endforeach ?>
-
-                                            <?php else: ?>
-
-                                                <li>
-                                                    <a href="javascript:;">
-                                                        <span class="details">
-                                                            <i>Tidak ada pemberitahuan</i>
-                                                        </span>
-                                                    </a>
-                                                </li>
-
-                                            <?php endif; ?>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-                            <!-- <li class="dropdown dropdown-extended dropdown-inbox" id="header_inbox_bar">
-                                <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-                                    <i class="icon-envelope-open"></i>
-                                    <span class="badge badge-default"> 4 </span>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li class="external">
-                                        <h3>Anda memiliki 
-                                            <span class="bold">7 Pesan</span> Baru</h3>
-                                        <a href="app_inbox.html">lihat semua</a>
-                                    </li>
-                                    <li>
-                                        <ul class="dropdown-menu-list scroller" style="height: 275px;" data-handle-color="#637283">
-                                            <li>
-                                                <a href="#">
-                                                    <span class="photo">
-                                                        <img src="<?= base_url("/web/assets/layouts/layout3/img/avatar2.jpg") ?>" class="img-circle" alt=""> </span>
-                                                    <span class="subject">
-                                                        <span class="from"> Lisa Wong </span>
-                                                        <span class="time">Just Now </span>
-                                                    </span>
-                                                    <span class="message"> Vivamus sed auctor nibh congue nibh. auctor nibh auctor nibh... </span>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li> -->
-                            <!-- END INBOX DROPDOWN -->
-                            <!-- BEGIN USER LOGIN DROPDOWN -->
-                            <li class="dropdown dropdown-user">
-                                <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-                                    <?php if (!empty($this->session->userdata('detail_identity')->profile_pic)): ?>
-                                    <img src="<?= base_url($this->session->userdata('detail_identity')->profile_pic) ?>" class="img-circle" />
-                                    <?php else: ?>
-                                    <img src="<?= base_url('/web/assets/pages/img/no_avatar.jpg') ?>" class="img-circle" />
-                                    <?php endif ?>
-
-                                    <span class="username username-hide-on-mobile"> <?= $this->session->userdata('identity')->username; ?> </span>
-                                    <i class="fa fa-angle-down"></i>
-                                </a>
-                                <ul class="dropdown-menu dropdown-menu-default">
-                                    <li>
-                                        <?= $this->html->a('<i class="icon-user"></i> Profil Saya </a>', '/profil') ?>
-                                    </li>
-                                    <!-- <li>
-                                        <a href="app_calendar.html">
-                                            <i class="icon-calendar"></i> My Calendar </a>
-                                    </li>
-                                    <li>
-                                        <a href="app_inbox.html">
-                                            <i class="icon-envelope-open"></i> My Inbox
-                                            <span class="badge badge-danger"> 3 </span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="app_todo.html">
-                                            <i class="icon-rocket"></i> My Tasks
-                                            <span class="badge badge-success"> 7 </span>
-                                        </a>
-                                    </li> -->
-                                    <li class="divider"> </li>
-                                    <li>
-                                        <?= $this->html->a('<i class="icon-lock"></i> Lock Screen </a>', '/site/lock') ?>
-                                    </li>
-                                    <li>
-                                        <?= $this->html->a('<i class="icon-key"></i> Log Out', '/site/logout') ?>
-                                    </li>
-                                </ul>
-                            </li>
-                            <!-- END USER LOGIN DROPDOWN -->
-                        </ul>
-                    </div>
-                    <!-- END TOP NAVIGATION MENU -->
-                </div>
-                <!-- END HEADER INNER -->
-            </div>
-            <!-- END HEADER -->
-            <!-- BEGIN HEADER & CONTENT DIVIDER -->
-            <div class="clearfix"> </div>
-            <!-- END HEADER & CONTENT DIVIDER -->
-            <!-- BEGIN CONTAINER -->
-            <div class="page-container">
-                <!-- BEGIN SIDEBAR -->
-                <div class="page-sidebar-wrapper">
-                    <!-- BEGIN SIDEBAR -->
-                    <div class="page-sidebar navbar-collapse collapse">
-                        <!-- BEGIN SIDEBAR MENU -->
-                        <?php $this->menuhelper->run() ?>
-                        <!-- END SIDEBAR MENU -->
-                    </div>
-                    <!-- END SIDEBAR -->
-                </div>
-                <!-- END SIDEBAR -->
-                <!-- BEGIN CONTENT -->
-                <div class="page-content-wrapper">
-                    <!-- BEGIN CONTENT BODY -->
-                    <div class="page-content" style="min-height: 100vh">
-                        <!-- BEGIN PAGE HEADER-->
-                        <?php /*<!-- BEGIN PAGE BAR -->
-                        <div class="page-bar">
-                            <ul class="page-breadcrumb">
-                                <li>
-                                    <a href="index.html">Home</a>
-                                    <i class="fa fa-circle"></i>
-                                </li>
-                                <li>
-                                    <a href="#">Blank Page</a>
-                                    <i class="fa fa-circle"></i>
-                                </li>
-                                <li>
-                                    <span>Page Layouts</span>
-                                </li>
-                            </ul>
+                    <?php if ($this->session->flashdata('info')): ?>
+                        <div class="alert alert-info alert-dismissible" style="margin-top: 10px">
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            <?= $this->session->flashdata('info'); ?>
                         </div>
-                        <!-- END PAGE BAR --> */ ?>
+                    <?php endif ?>
 
-                        <!-- BEGIN ALERT FLASHDATA -->
-                        <?php if ($this->session->flashdata('danger')): ?>
-                            <div class="alert alert-danger alert-dismissible" style="margin-top: 10px">
-                                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                                <?= $this->session->flashdata('danger'); ?>
-                            </div>
-                        <?php endif ?>
+                    <?php if ($this->session->flashdata('warning')): ?>
+                        <div class="alert alert-warning alert-dismissible" style="margin-top: 10px">
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            <?= $this->session->flashdata('warning'); ?>
+                        </div>
+                    <?php endif ?>
 
-                        <?php if ($this->session->flashdata('info')): ?>
-                            <div class="alert alert-info alert-dismissible" style="margin-top: 10px">
-                                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                                <?= $this->session->flashdata('info'); ?>
-                            </div>
-                        <?php endif ?>
+                    <?php if ($this->session->flashdata('success')): ?>
+                        <div class="alert alert-success alert-dismissible" style="margin-top: 10px">
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            <?= $this->session->flashdata('success'); ?>
+                        </div>
+                    <?php endif ?>
+                    <!-- END ALERT FLASHDATA -->
 
-                        <?php if ($this->session->flashdata('warning')): ?>
-                            <div class="alert alert-warning alert-dismissible" style="margin-top: 10px">
-                                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                                <?= $this->session->flashdata('warning'); ?>
-                            </div>
-                        <?php endif ?>
+                    <?php $this->load->view($view, $data); ?>
 
-                        <?php if ($this->session->flashdata('success')): ?>
-                            <div class="alert alert-success alert-dismissible" style="margin-top: 10px">
-                                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                                <?= $this->session->flashdata('success'); ?>
-                            </div>
-                        <?php endif ?>
-                        <!-- END ALERT FLASHDATA -->
+				</section>
+				<!-- /.content -->
+			</div>
+			<!-- /.content-wrapper -->
 
-                        <?php $this->load->view($view, $data); ?>
-                    </div>
-                    <!-- END CONTENT BODY -->
-                </div>
-                <!-- END CONTENT -->
-            </div>
-            <!-- END CONTAINER -->
-            <!-- BEGIN FOOTER -->
-            <div class="page-footer">
-                <div class="page-footer-inner"> <?= getenv('APP_YEAR') ?> &copy; <?= getenv('APP_COPYRIGHT') ?>
-                    <a target="_blank" href="<?= getenv('COMPANY_PAGE') ?>"><?= getenv('APP_COMPANY') ?></a> &nbsp;
-                </div>
-                <div class="scroll-to-top">
-                    <i class="icon-arrow-up"></i>
-                </div>
-            </div>
-            <!-- END FOOTER -->
-        </div>
+			<footer class="main-footer">
+				<div class="float-right d-none d-sm-block">
+				<b>Version</b> <?= env('APP_VERSION') ?>
+				</div>
+				<?= env('APP_YEAR') ?> &copy; <?= env('APP_COPYRIGHT') ?>
+			</footer>
 
-        <!-- MY MODAL -->
+		</div>
+		<!-- ./wrapper -->
+
+		<!-- MY MODAL -->
         <div id="modal-preview" class="modal fade" tabindex="-1">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -291,7 +266,5 @@
         </script>
 
         <?php $this->load->view('layouts/main_js') ?>
-
-    </body>
-
+	</body>
 </html>

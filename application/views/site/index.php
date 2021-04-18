@@ -1,5 +1,5 @@
-<div class="portlet light portlet-fit bordered">
-	<div class="portlet-body greeting-board">
+<div class="card light portlet-fit bordered">
+	<div class="card-body greeting-board">
 		<h1 class="page-title" style="font-weight: bold"> <span id="greetings"></span>, 
 			<?= def($this->session->userdata('detail_identity'), 'nama_depan') ?>!
             <br /><small id="timestamp"></small>
@@ -19,10 +19,10 @@
 <div class="row">
 	<?php
 		$style = [
-			['color' => 'green-sharp', 'icon' => 'icon-pie-chart'],
-			['color' => 'red-haze', 'icon' => 'icon-pie-chart'],
-			['color' => 'blue-sharp', 'icon' => 'icon-bar-chart'],
-			['color' => 'purple-soft', 'icon' => 'icon-bar-chart'],
+			['color' => 'bg-success', 'icon' => 'ion-ios-pie-outline'],
+			['color' => 'bg-danger', 'icon' => 'ion-ios-pie-outline'],
+			['color' => 'bg-primary', 'icon' => 'ion-stats-bars'],
+			['color' => 'bg-info', 'icon' => 'ion-stats-bars'],
 		];
 
 		$i = 0;
@@ -38,32 +38,29 @@
 	?>
 
 	    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-	        <div class="dashboard-stat2 ">
-	            <div class="display">
-	                <div class="number">
-	                    <h3 class="font-<?= $style[$i]['color'] ?? '' ?>">
-	                        <span data-counter="counterup" data-value="<?= $summary ?>">
-	                        	<?= $summary ?></span>
-	                        <small class="font-<?= $style[$i]['color'] ?? '' ?>"></small>
-	                    </h3>
-	                    <small><?= strtoupper(str_replace('_', ' ', $title)) ?></small>
-	                </div>
-	                <div class="icon">
-	                    <i class="<?= $style[$i]['icon'] ?? '' ?>"></i>
-	                </div>
-	            </div>
-	            <div class="progress-info">
-	                <div class="progress">
-	                    <span style="width: <?= $percentage ?>%;" class="progress-bar progress-bar-success <?= $style[$i]['color'] ?? '' ?>">
-	                        <span class="sr-only"><?= $percentage ?>% Percentage</span>
-	                    </span>
-	                </div>
-	                <div class="status">
-	                    <div class="status-title"> Percentage </div>
-	                    <div class="status-number"> <?= $percentage ?>% </div>
-	                </div>
-	            </div>
-	        </div>
+			<div class="small-box bg-default">
+				<div class="inner">
+					<h3><?= $summary ?></h3>
+
+					<p><?= strtoupper(str_replace('_', ' ', $title)) ?></p>
+
+					<div class="progress-info">
+		                <div class="progress">
+		                    <span style="width: <?= $percentage ?>%;" class="progress-bar progress-bar-success <?= $style[$i]['color'] ?? '' ?>">
+		                        <span class="sr-only"><?= $percentage ?>% Percentage</span>
+		                    </span>
+		                </div>
+		                <div class="status">
+		                    <div class="status-title"> Percentage </div>
+		                    <div class="status-number"> <?= $percentage ?>% </div>
+		                </div>
+		            </div>
+				</div>
+				<div class="icon">
+					<i class="<?= $style[$i]['icon'] ?? '' ?>"></i>
+				</div>
+				<?php //<a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a> ?>
+			</div>
 	    </div>
 
 	<?php 
