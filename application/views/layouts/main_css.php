@@ -78,4 +78,4 @@ if (!empty($view_css)) {
 }
 ?>
 
-<link rel="shortcut icon" href="<?= base_url('/web/images/favicon.png') ?>" /> </head>
+<link rel="shortcut icon" href="<?= base_url('/web/images/Logo.png') ?>" /> </head>

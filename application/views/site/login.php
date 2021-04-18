@@ -1,7 +1,6 @@
 <div class="login-box">
-    <div class="login-logo">
-        <a href="javascript:;">
-            <img src="<?= base_url('/web/images/Logo_HRIS.png') ?>" alt="" /> </a>
+    <div class="login-logo" style="background-color: rgba(255, 255, 255, 0.5);">
+        <a href="javascript:;" class="text-bold">IRBAC </a>
     </div>
     <!-- /.login-logo -->
     <div class="card">
