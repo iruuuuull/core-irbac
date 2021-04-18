@@ -3,6 +3,6 @@
 		background: url('<?= base_url('/web/images/backboard.png') ?>'); 
 	    background-repeat: no-repeat;
 	    background-position: right 50px bottom;
-	    background-size: 200px;
+	    background-size: 130px;
 	}
 </style>
