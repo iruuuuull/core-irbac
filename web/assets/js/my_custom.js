@@ -3,17 +3,17 @@ var oTable;
 
 function datatable(id, url) {
 	var table = id;
-	var fixedHeaderOffset = 0;
+	// var fixedHeaderOffset = 0;
 
-  if (App.getViewPort().width < App.getResponsiveBreakpoint('md')) {
-    if ($('.page-header').hasClass('page-header-fixed-mobile')) {
-      fixedHeaderOffset = $('.page-header').outerHeight(true);
-    } 
-  } else if ($('.page-header').hasClass('navbar-fixed-top')) {
-    fixedHeaderOffset = $('.page-header').outerHeight(true);
-  } else if ($('body').hasClass('page-header-fixed')) {
-    fixedHeaderOffset = 64; // admin 5 fixed height
-  }
+ //  if (App.getViewPort().width < App.getResponsiveBreakpoint('md')) {
+ //    if ($('.page-header').hasClass('page-header-fixed-mobile')) {
+ //      fixedHeaderOffset = $('.page-header').outerHeight(true);
+ //    } 
+ //  } else if ($('.page-header').hasClass('navbar-fixed-top')) {
+ //    fixedHeaderOffset = $('.page-header').outerHeight(true);
+ //  } else if ($('body').hasClass('page-header-fixed')) {
+ //    fixedHeaderOffset = 64; // admin 5 fixed height
+ //  }
 
   oTable = table.DataTable({ 
   	"language": {
@@ -41,7 +41,7 @@ function datatable(id, url) {
     ],
     fixedHeader: {
       header: true,
-      headerOffset: fixedHeaderOffset
+      // headerOffset: fixedHeaderOffset
     },
     "pageLength": 20,
     "destroy": true,
