@@ -57,6 +57,10 @@ $route['translate_uri_dashes'] = FALSE;
 require_once __DIR__ . '/api.php';
 # END API
 
+# START API
+require_once __DIR__ . '/rbac.php';
+# END API
+
 # START SITE
 $route['site'] = 'SiteController/actionIndex';
 $route['site/index'] = 'SiteController/actionIndex';
@@ -199,113 +203,6 @@ $route['master/designation/edit/(:num)']['post']	= 'master/DesignationController
 $route['master/designation/hapus/(:num)']['post']	= 'master/DesignationController/actionHapus/$1';
 
 # END MODULE MASTER ROUTES
-
-# START MODULE RBAC ROUTES
-
-# RBAC MENU
-
-# Menu Type
-$route['rbac/menu'] = 'rbac/MenuController/actionIndex';
-$route['rbac/menu/index'] = 'rbac/MenuController/actionIndex';
-$route['rbac/menu/(:num)'] = 'rbac/MenuController/actionIndex/$1';
-$route['rbac/menu/hapus/(:num)'] = 'rbac/MenuController/actionHapus/$1';
-$route['rbac/menu/list-menu/(:num)'] = 'rbac/MenuController/actionListMenu/$1';
-
-# User
-$route['rbac/user'] = 'rbac/UserController/actionIndex';
-$route['rbac/user/index'] = 'rbac/UserController/actionIndex';
-$route['rbac/user/get-data']['post'] = 'rbac/UserController/actionGetData';
-$route['rbac/user/create'] = 'rbac/UserController/actionCreate';
-$route['rbac/user/detail/(:num)'] = 'rbac/UserController/actionDetail/$1';
-$route['rbac/user/simpan-detail/(:num)']['post'] = 'rbac/UserController/actionSimpanDetail/$1';
-$route['rbac/user/edit/(:num)'] = 'rbac/UserController/actionEdit/$1';
-$route['rbac/user/hapus/(:num)/(:any)'] = 'rbac/UserController/actionHapus/$1/$2';
-$route['rbac/user/get-department/(:num)'] = 'rbac/UserController/actionGetDepartment/$1';
-$route['rbac/user/get-atasan']['post'] = 'rbac/UserController/actionGetAtasan';
-$route['rbac/user/get-grade'] = 'rbac/UserController/actionGetGrade';
-$route['rbac/user/get-designation'] = 'rbac/UserController/actionGetDesignation';
-$route['rbac/user/get-kelas-jabatan'] = 'rbac/UserController/actionGetKelasJabatan';
-$route['rbac/user/get-golongan/(:num)'] = 'rbac/UserController/actionGetGolongan/$1';
-
-# END MODULE RBAC ROUTES
-
-# START REPORT
-$route['report/karyawan'] = 'ReportController/actionIndex';
-$route['report/karyawan/unit']['post'] = 'ReportController/getUnit';
-$route['report/karyawan/bagian']['post'] = 'ReportController/getBagian';
-$route['report/karyawan/ambil-data'] = 'ReportController/getDataKaryawan';
-# END REPORT
-
-# START LIVE ATTENDANCE
-$route['live-attendance'] = 'LiveAttendanceController/actionIndex';
-$route['live-attendance/index'] = 'LiveAttendanceController/actionIndex';
-$route['live-attendance/check/(:any)']['post'] = 'LiveAttendanceController/actionCheck/$1';
-$route['live-attendance/logs'] = 'LiveAttendanceController/actionLogs';
-$route['live-attendance/detail/(:num)'] = 'LiveAttendanceController/actionDetail/$1';
-$route['live-attendance/LogsUpdate'] = 'LiveAttendanceController/actionLogsUpdate';
-$route['live-attendance/getdata-karyawan'] = 'LiveAttendanceController/getData';
-$route['live-attendance/getdata-logsupdate'] = 'LiveAttendanceController/actionGetData';
-$route['live-attendance/getdetail-logsupdate/(:num)/(:any)'] = 'LiveAttendanceController/GetDataUpdate/$1/$2';
-$route['live-attendance/save-logsupdate'] = 'LiveAttendanceController/actionUpdateLogs';
-$route['live-attendance/employee'] = 'LiveAttendanceController/actionEmployee';
-# END LIVE ATTENDANCE
-
-# START ATTENDANCE REPORT
-$route['report/attendance']= 'report/AttendanceController/actionIndex';
-$route['report/attendance/index']= 'report/AttendanceController/actionIndex';
-$route['report/attendance/getdata-karyawan']= 'report/AttendanceController/getData';
-$route['report/attendance/getdata']= 'report/AttendanceController/actionGetData';
-
-# END ATTENDANCE REPORT
-
-# START SUMMARY EMPLOYEE
-$route['report/sum-employee']= 'report/SumEmployeeController/actionIndex';
-$route['report/sum-employee/index']= 'report/SumEmployeeController/actionIndex';
-$route['report/sum-employee/get-data']= 'report/SumEmployeeController/actionGetData';
-# END SUMMARY EMPLOYEE
-
-# START LIVE LETTER
-$route['live-letter'] = 'LiveLetterController/actionIndex';
-$route['live-letter/index'] = 'LiveLetterController/actionIndex';
-$route['live-letter/get-data-create'] = 'LiveLetterController/actionGetDataCreate';
-$route['live-letter/get-code']	= 'LiveLetterController/actionGetCode';
-$route['live-letter/get-romawi']	= 'LiveLetterController/actionRomawi';
-$route['live-letter/detail-create/(:num)'] = 'LiveLetterController/actionDetailCreate/$1';
-$route['live-letter/simpan-letter']['post'] = 'LiveLetterController/actionSimpanLetter';
-$route['live-letter/simpan-letter/(:num)']['post'] = 'LiveLetterController/actionSimpanLetter/$1';
-$route['live-letter/listletter'] = 'LiveLetterController/actionListLetter';
-$route['live-letter/get-data-list'] = 'LiveLetterController/actionGetDataList';
-$route['live-letter/detail-list/(:num)'] = 'LiveLetterController/actionDetailList/$1';
-# END LIVE LETTER
-
-# START MODULE CUTI
-
-# PERMOHONAN CUTI
-$route['cuti/permohonan'] = 'cuti/PermohonanController/actionIndex';
-$route['cuti/permohonan/index'] = 'cuti/PermohonanController/actionIndex';
-$route['cuti/permohonan/get-data']['post'] = 'cuti/PermohonanController/actionGetData';
-$route['cuti/permohonan/ajukan']['post'] = 'cuti/PermohonanController/actionAjukan';
-$route['cuti/permohonan/get-form/(:any)']['post'] = 'cuti/PermohonanController/actionGetForm/$1';
-$route['cuti/permohonan/batalkan/(:num)']['post'] = 'cuti/PermohonanController/actionBatalkan/$1';
-$route['cuti/permohonan/get-existing'] = 'cuti/PermohonanController/actionGetExisting';
-$route['cuti/permohonan/get-existing/(:num)'] = 'cuti/PermohonanController/actionGetExisting/$1';
-$route['cuti/permohonan/get-tracking/(:num)'] = 'cuti/PermohonanController/actionGetTracking/$1';
-$route['cuti/permohonan/tipe-cuti/(:num)'] = 'cuti/PermohonanController/actionTipeCuti/$1';
-$route['cuti/permohonan/batalkan-setuju/(:num)']['post'] = 'cuti/PermohonanController/actionBatalkanSetuju/$1';
-$route['cuti/permohonan/cuti-bersama']['post'] = 'cuti/PermohonanController/actionCutiBersama';
-
-# VERIFIKASI CUTI
-$route['cuti/verifikasi'] = 'cuti/VerifikasiController/actionIndex';
-$route['cuti/verifikasi/index'] = 'cuti/VerifikasiController/actionIndex';
-$route['cuti/verifikasi/get-data'] = 'cuti/VerifikasiController/actionGetData';
-$route['cuti/verifikasi/get-data/(:any)'] = 'cuti/VerifikasiController/actionGetData/$1';
-$route['cuti/verifikasi/simpan/(:num)']['post'] = 'cuti/VerifikasiController/actionSimpan/$1';
-$route['cuti/verifikasi/set-verifikator/(:num)'] = 'cuti/VerifikasiController/actionSetVerifikator/$1';
-$route['cuti/verifikasi/get/(:num)'] = 'cuti/VerifikasiController/actionGet/$1';
-$route['cuti/verifikasi/get-cancel-form/(:num)'] = 'cuti/VerifikasiController/actionGetCancelForm/$1';
-$route['cuti/verifikasi/pembatalan/(:num)']['post'] = 'cuti/VerifikasiController/actionPembatalan/$1';
-
-# END MODULE CUTI
 
 # START NOTIFIKASI
 $route['notifikasi'] = 'NotifikasiController/actionIndex';
