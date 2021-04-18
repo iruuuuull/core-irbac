@@ -96,6 +96,7 @@ class Menu extends MY_Model {
     {
         if (!empty($list_id)) {
             foreach ($list_id as $id) {
+                (new Menugroup)->delete(['menu_id' => $id]);
                 $this->menu->delete(['id' => $id]);
             }
 
@@ -176,7 +177,7 @@ class Menu extends MY_Model {
             $this->db->trans_start();
 
             try {
-                $list_id = !empty($post['remove']) ? $post['remove'] : [];
+                $list_id = !empty($post['Menu']['remove']) ? $post['Menu']['remove'] : [];
                 $this->deleteMenus($list_id);
 
                 if ($this->doSaveMenu($post['Menu'], $id)) {
