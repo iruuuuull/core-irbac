@@ -1,11 +1,14 @@
-<div class="portlet light bordered">
-	<div class="portlet-title">
-		<div class="caption">Custom Link</div>
-		<div class="tools">
-			<a href="javascript:;" class="collapse"> </a>
+<div class="card light bordered">
+	<div class="card-header">
+		<div class="card-title">Custom Link</div>
+
+		<div class="card-tools">
+			<button type="button" class="btn btn-tool" data-card-widget="collapse">
+			<i class="fas fa-minus"></i>
+			</button>
 		</div>
 	</div>
-	<div class="portlet-body">
+	<div class="card-body">
 		<div class="form-group">
 			<label>URL</label>
 			<input type="text" name="url" id="url" class="form-control" placeholder="http://" value="http://" />

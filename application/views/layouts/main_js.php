@@ -4,8 +4,8 @@
 <script src="<?= base_url('/web/assets/plugins/bootstrap/js/bootstrap.bundle.min.js') ?>"></script>
 <!-- AdminLTE App -->
 <script src="<?= base_url('/web/assets/js/adminlte.min.js') ?>"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="<?= base_url('/web/assets/js/demo.js') ?>"></script>
+<script src="<?= base_url('/web/assets/plugins/daterangepicker/moment.min.js') ?>"></script>
+<script src="<?= base_url('/web/assets/plugins/daterangepicker/daterangepicker.js') ?>"></script>
 
 <?php 
 # Load self-made file views for setting js

@@ -213,15 +213,15 @@ function previewPDF(path) {
 /* AKHIR FUNGSI PREVIEW PDF */
 
 /* Ladda button submit */
-$(document).ready(function() {
-  Ladda.bind( '[type=submit]', { timeout: 2000 } );
-});
+// $(document).ready(function() {
+//   Ladda.bind( '[type=submit]', { timeout: 2000 } );
+// });
 /* Ladda button submit */
 
 /* Default Datepicker */
 $(document).ready(function() {
   $('.datepicker').attr('readonly', true);
-  $('.datepicker').datepicker({
+  $('.datepicker').daterangepicker({
     format: 'dd-mm-yyyy',
     autoclose: true
   });
@@ -229,9 +229,9 @@ $(document).ready(function() {
 /* Default Datepicker */
 
 // MODAL DRAGGABLE
-$(".draggable-modal").draggable({
-  handle: ".modal-header"
-});
+// $(".draggable-modal").draggable({
+//   handle: ".modal-header"
+// });
 // MODAL DRAGGABLE
 
 /* OVERLAY LOADER */

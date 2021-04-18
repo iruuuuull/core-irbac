@@ -1,4 +1,4 @@
-<link href="<?= base_url('web/assets/global/plugins/jquery-nestable/jquery.nestable.css') ?>" rel="stylesheet" type="text/css" />
+<link href="<?= base_url('web/assets/plugins/jquery-nestable/jquery.nestable.css') ?>" rel="stylesheet" type="text/css" />
 <style>
     .a1{
         vertical-align: -moz-middle-with-baseline;

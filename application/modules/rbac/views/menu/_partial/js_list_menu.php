@@ -2,7 +2,7 @@
 	$jsonListGroup = json_encode($listGroup);
 ?>
 
-<script src="<?= base_url('web/assets/global/plugins/jquery-nestable/jquery.nestable.js') ?>" type="text/javascript"></script>
+<script src="<?= base_url('web/assets/plugins/jquery-nestable/jquery.nestable.js') ?>" type="text/javascript"></script>
 <script type="text/javascript">
 	var list_group = <?= $jsonListGroup ?>;
 

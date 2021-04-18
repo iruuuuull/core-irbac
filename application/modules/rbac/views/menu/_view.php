@@ -2,7 +2,7 @@
     <button type="button" class="pull-right btn btn-success btn-xs pull-right" aria-hidden="true" data-toggle="collapse" href="#item-menu-<?php echo $menu->id?>" aria-expanded="true" aria-controls="item-menu-<?php echo $menu->id?>"></button>
 
     <div class="dd-handle">
-        <div class=" panel panel-success">
+        <div class="panel panel-success">
             <div class="handle-head panel-heading"><?php echo $menu->label?> <span class="pull-right"><i>(<?php echo $menu->menu_url?>)</i></span> </div>
             <div class="panel-collapse collapse dd-nodrag" id="item-menu-<?php echo $menu->id?>" role="tabpanel" aria-labelledby="item-menu-<?php echo $menu->id?>">
             <div class="panel panel-default">

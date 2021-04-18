@@ -1,4 +1,6 @@
-<h1 class="page-title"><?= $title ?></h1>
+<section class="content-header">
+    <h1><?= $title ?></h1>
+</section>
 
 <div class="row">
     <div class="col-lg-4">
@@ -6,11 +8,13 @@
     </div>
 
     <div class="col-lg-8">
-        <div class="portlet light bordered">
-            <div class="portlet-title">
-                Group name : <strong><?php echo $menuType ?></strong>
+        <div class="card light bordered">
+            <div class="card-header">
+                <h3 class="card-title">
+                    Group name : <strong><?php echo $menuType ?></strong>
+                </h3>
             </div>
-            <div class="portlet-body">
+            <div class="card-body">
                 <div class="row">
                     <div class="col-md-8">
                         <strong><?= 'Menu Structure' ?></strong>
@@ -21,9 +25,10 @@
                     </div>
                 </div>
 
-                <div class="note note-success">
+                <div class="info-box bg-warning">
                     <h4 class="block">Tips !</h4>
-                    <small>Icon harus berisi berdasarkan Font Awesome<br/>Ex. (fa fa-)dashboard <i class="fa fa-dashboard"></i><br/> Klik link untuk referensi <a href="http://fontawesome.io/">http://fontawesome.io/</a></small>
+                    <small>Icon harus berisi berdasarkan Font Awesome<br/>Ex. (fa fa-)tachometer-alt <i class="fa fa-tachometer"></i><br/> 
+                        Klik link untuk referensi <a href="https://fontawesome.com/icons" target="_blank">http://fontawesome.io/</a></small>
                 </div>
 
                 <?= form_open('', ['id' => 'formMenu']); ?>
