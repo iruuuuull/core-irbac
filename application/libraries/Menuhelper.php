@@ -9,22 +9,20 @@ class Menuhelper
 	/**
      * @inheritdoc
      */
-    public $linkTemplate = '<a href="{url}">{icon} {label}</a>';
+    public $linkTemplate = '<a href="{url}" class="nav-link {active}">{icon} {label}</a>';
     /**
      * @inheritdoc
      * Styles all labels of items on sidebar by AdminLTE
      */
-    public $labelTemplate = '<span class="title">{label}</span>';
-    public $submenuTemplate = "\n<ul class='sub-menu' {show}>\n{items}\n</ul>\n";
+    public $labelTemplate = '<p>{label}</p>';
+    public $submenuTemplate = "\n<ul class='nav nav-treeview' {show}>\n{items}\n</ul>\n";
     public $activateParents = true;
-    public $defaultIconHtml = '<i class="fa fa-circle-o"></i> ';
+    public $defaultIconHtml = '<i class="far fa-circle nav-icon"></i> ';
     public $options = [
-    	'class' => 'page-sidebar-menu page-header-fixed',
-    	'data-keep-expanded' => 'false',
-    	'data-auto-scroll' => 'true',
-    	'data-slide-speed' => '200',
-    	'style' => 'padding-top: 20px'
-
+    	"class" => "nav nav-pills nav-sidebar flex-column",
+        "data-widget" => "treeview",
+        "role" => "menu",
+        "data-accordion" => "false"
     ];
 
     /**
@@ -76,13 +74,16 @@ class Menuhelper
     /**
      * @inheritdoc
      */
-    protected function renderItem($item)
+    protected function renderItem($item, $active = false)
     {
+        $activeClass = '';
+        if ($active === true) {
+            $activeClass = $this->activeCssClass;
+        }
+
         if (isset($item['items'])) {
-            // $labelTemplate = '<a href="{url}">{icon} {label} <span class="pull-right-container"><i class="fa fa-plus pull-right"></i><i class="fa fa-minus pull-right"></i></span></a>';
-            // $linkTemplate = '<a href="{url}">{icon} {label} <span class="pull-right-container"><i class="fa fa-plus pull-right"></i><i class="fa fa-minus pull-right"></i></span></a>';
-            $labelTemplate = '<a href="{url}" class="nav-link nav-toggle">{icon} {label}<span class="arrow "></span></a>';
-            $linkTemplate = '<a href="{url}" class="nav-link nav-toggle">{icon} {label}<span class="arrow "></span></a>';
+            $labelTemplate = '<a href="{url}" class="nav-link {active}">{icon} {label}<i class="right fas fa-angle-left"></i></a>';
+            $linkTemplate = '<a href="{url}" class="nav-link {active}">{icon} {label}<i class="right fas fa-angle-left"></i></a>';
         } else {
             $labelTemplate = $this->labelTemplate;
             $linkTemplate = $this->linkTemplate;
@@ -93,6 +94,7 @@ class Menuhelper
             '{icon}' => empty($item['icon']) ? $this->defaultIconHtml
                 : '<i class="' . static::$iconClassPrefix . $item['icon'] . '"></i> ',
             '{url}' => isset($item['url']) ? site_url($item['url']) : 'javascript:void(0);',
+            '{active}' => $activeClass,
         ];
 
         $template = $linkTemplate;
@@ -116,9 +118,11 @@ class Menuhelper
                     $options = [];
                     $tag = $this->CI->helpers->arrayRemove($options, 'tag', 'li');
                     $class = [];
+                    $activeLink = false;
 
                     if ($item['active']) {
                         $class[] = $this->activeCssClass;
+                        $activeLink = true;
                     }
 
                     if (!empty($class)) {
@@ -128,18 +132,20 @@ class Menuhelper
                             $options['class'] .= ' ' . implode(' ', $class);
                         }
                     }
-                    $menu = $this->renderItem($item);
+                    $menu = $this->renderItem($item, $activeLink);
                     if (!empty($item['items'])) {
                         $menu .= strtr($this->submenuTemplate, [
                             '{show}' => $item['active'] ? "style='display: block'" : '',
                             '{items}' => $this->renderItems($item['items']),
                         ]);
-                        if (isset($options['class'])) {
-                            $options['class'] .= ' nav-item';
-                        } else {
-                            $options['class'] = 'nav-item';
-                        }
                     }
+
+                    if (isset($options['class'])) {
+                        $options['class'] .= ' nav-item';
+                    } else {
+                        $options['class'] = 'nav-item';
+                    }
+
                     $lines[] = Html::tag($tag, $menu, $options);
                 }
             }
