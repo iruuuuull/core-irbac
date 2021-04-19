@@ -40,19 +40,14 @@ class AuthHelper
 
 		if (strpos(uri_string(), 'api/') === false ) {
 			if ($this->isGuest() && !in_array(uri_string(), $this->allowed)) {
-		        // if (uri_string() != 'login' && uri_string() != 'site/login' && uri_string() != 'site/register' && uri_string() != 'site/google-auth'){
-
-		            $this->CI->session->set_flashdata('info', 'Silahkan login kedalam aplikasi');
-		            return redirect('site/login');
-		        // }
+	            $this->CI->session->set_flashdata('info', 'Silahkan login kedalam aplikasi');
+	            return redirect('site/login');
 		    } elseif ($status === self::STATUS_LOCKED) {
 		    	if (!in_array(uri_string(), $this->allowed)) {
 		            $this->CI->session->set_flashdata('info', 'Halaman terkunci, silahkan login');
 		            return redirect('site/lock');
 		        }
-		    } elseif (in_array(uri_string(), $this->allowed)) {
-		    	return true;
-		    } elseif ($this->checkPermission()) {
+		    } elseif (in_array(uri_string(), $this->allowed) || $this->checkPermission()) {
 		    	return true;
 		    }
 		}
