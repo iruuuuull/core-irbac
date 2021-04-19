@@ -122,11 +122,11 @@ function swalert(options, callback = false) {
     type = options.type;
   }
 
-  return swal({
-    type: type,
+  return swal.fire({
+    icon: type,
     title: title,
-    text: message,
-    html: true
+    // text: message,
+    html: message
   }, callback)
 }
 /* AKHIR SWAL ALERT */
@@ -155,17 +155,17 @@ function customConfirmation(options = null, callback) {
     type = options.type;
   }
 
-  return swal({
+  return swal.fire({
     title: title,
-    type: type,
-    text: message,
+    icon: type,
+    // text: message,
     showCancelButton: true,
     confirmButtonText: confirm_button,
     cancelButtonText: cancel_button,
     customClass: 'swal-wide',
-    html: true
-  }, (confirmed) => {
-    callback(confirmed && confirmed == true);
+    html: message
+  }). then((confirmed) => {
+    callback(confirmed.value === true);
   });
 }
 /* AKHIR CUSTOM CONFIRMATION */
@@ -575,3 +575,17 @@ function autoActiveSidebar() {
   }
 }
 /* AKHIR AUTO ACTIVE PARENT MENU */
+
+/* AWAL Custom Regex */
+function stringStrip(evt) {
+  var theEvent = evt || window.event;
+  var key = theEvent.keyCode || theEvent.which;
+  key = String.fromCharCode( key );
+  var regex = /^[a-z\-]+$/;
+
+  if( !regex.test(key) ) {
+    theEvent.returnValue = false;
+    if(theEvent.preventDefault) theEvent.preventDefault();
+  }
+}
+/* AKHIR Custom Regex */

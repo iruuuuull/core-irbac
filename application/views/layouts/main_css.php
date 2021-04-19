@@ -5,6 +5,7 @@
 <!-- overlayScrollbars -->
 <link rel="stylesheet" href="<?= base_url('/web/assets/css/adminlte.min.css') ?>">
 <link rel="stylesheet" href="<?= base_url('/web/assets/plugins/daterangepicker/daterangepicker.css') ?>">
+<link rel="stylesheet" href="<?= base_url('/web/assets/plugins/sweetalert2/sweetalert2.css') ?>">
 <link rel="stylesheet" href="<?= base_url('/web/assets/css/custom.css') ?>">
 <!-- Google Font: Source Sans Pro -->
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">

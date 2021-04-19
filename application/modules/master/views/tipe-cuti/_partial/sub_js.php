@@ -103,7 +103,7 @@
 
     function ajaxAddEvent(data_form, action, button = null) {
         if (button !== null) {
-            var ladda = Ladda.create(button);
+            // var ladda = Ladda.create(button);
         }
 
         $.ajax({
@@ -141,7 +141,7 @@
             modal.modal('hide');
 
             if (button !== null) {
-                ladda.stop();
+                // ladda.stop();
             }
         });
     }

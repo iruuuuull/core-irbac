@@ -29,7 +29,7 @@
 		let formData = new FormData(this);
 		let action = $(this).attr('action');
 
-		var ladda = Ladda.create(this);
+		// var ladda = Ladda.create(this);
 
 		$.ajax({
 			url: action,
@@ -53,7 +53,7 @@
 		.always(function() {
 			datatableReload();
 			modal.modal('hide')
-			ladda.stop();
+			// ladda.stop();
 		});
 
 	});

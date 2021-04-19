@@ -47,7 +47,7 @@
     	let form_data = active_form.serialize();
     	let form_action = active_form.attr('action');
 
-    	var ladda = Ladda.create(this);
+    	// var ladda = Ladda.create(this);
 
     	$.ajax({
     		url: form_action,
@@ -68,7 +68,7 @@
     	.always(function() {
     		datatableReload();
     		modal.modal('hide')
-    		ladda.stop();
+    		// ladda.stop();
     	});
 
     });

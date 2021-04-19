@@ -6,6 +6,7 @@
 <script src="<?= base_url('/web/assets/js/adminlte.min.js') ?>"></script>
 <script src="<?= base_url('/web/assets/plugins/daterangepicker/moment.min.js') ?>"></script>
 <script src="<?= base_url('/web/assets/plugins/daterangepicker/daterangepicker.js') ?>"></script>
+<script src="<?= base_url('/web/assets/plugins/sweetalert2/sweetalert2.js') ?>"></script>
 
 <?php 
 # Load self-made file views for setting js
