@@ -381,4 +381,49 @@ class Helpers
         return null;
     }
 
+    public function valueErrors($errors, $list = false)
+    {
+        $error_values = array_values($errors);
+
+        if ($list) {
+            return $this->CI->html->ul($error_values);
+        } else {
+            return implode('; ', array_values($error_values));
+        }
+    }
+
+    public function getRoutesByGroup($groups)
+    {
+        $routes = [];
+        $permissions_child = [];
+
+        $permissions = $this->CI->authassignment->getPermissionsByGroup($groups);
+
+        if ($permissions) {
+            foreach ($permissions as $key => $permission) {
+                $permissions_child[] = $permission->child;
+            }
+        }
+
+        if ($permissions_child) {
+            foreach ($permissions_child as $key => $childs) {
+                foreach ($childs as $key => $child) {
+                    $routes[] = $child->child;
+                }
+            }
+        }
+
+        return $routes;
+    }
+
+    public function getCurrentSite()
+    {
+        $controller = str_replace('Controller', '', $this->CI->router->fetch_class());
+        $slug_controller = camelToSlug($controller, '-');
+        $method = str_replace('action', '', $this->CI->router->fetch_method());
+        $slug_method = camelToSlug($method, '-');
+
+        return $this->CI->router->fetch_module() .'/'. $slug_controller .'/'. $slug_method;
+    }
+
 }
