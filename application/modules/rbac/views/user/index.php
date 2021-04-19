@@ -1,13 +1,16 @@
-<h1 class="page-title">User</h1>
+<section class="content-header">
+    <h1>User</h1>
+</section>
 
 <div class="row">
     <div class="col-md-12">
-        <div class="portlet light bordered">
-            <div class="portlet-body">
+        <div class="card light bordered">
+            <div class="card-body">
             	<div class="table-toolbar">
                     <div class="row">
+                        <div class="col-md-6"></div>
                         <div class="col-md-6">
-                            <div class="btn-group">
+                            <div class="btn-group float-right mb-3 mr-3">
                                 <a href="<?= site_url('/rbac/user/create') ?>" class="btn sbold btn-primary"> Tambah
                                     <i class="fa fa-plus"></i>
                                 </a>

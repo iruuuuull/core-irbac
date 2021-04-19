@@ -71,8 +71,8 @@ class UserController extends CI_Controller {
             $row[] = "
             	<div class='text-center'>
 	            	<button data-id='{$field->id}' class='btn btn-info btn-xs btn-preview'><i class='fa fa-eye'></i></button> 
-	            	<a href='". base_url("/rbac/user/edit/{$field->id}") ."' class='btn btn-warning btn-xs'><i class='fa fa-pencil'></i></a> 
-	            	<button data-id='{$field->id}' class='btn btn-danger btn-xs btn-delete'><i class='fa fa-trash-o'></i></button>
+	            	<a href='". base_url("/rbac/user/edit/{$field->id}") ."' class='btn btn-warning btn-xs'><i class='fa fa-pencil-alt'></i></a> 
+	            	<button data-id='{$field->id}' class='btn btn-danger btn-xs btn-delete'><i class='fa fa-trash-alt'></i></button>
 	            	<button data-id='{$field->id}' class='btn btn-primary btn-xs btn-add-detail' title='Tambah Detail'>
 	            		<i class='fa fa-share'></i></button>
             	</div>
