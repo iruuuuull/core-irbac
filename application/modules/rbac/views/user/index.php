@@ -10,7 +10,7 @@
                     <div class="row">
                         <div class="col-md-6"></div>
                         <div class="col-md-6">
-                            <div class="btn-group float-right mb-3 mr-3">
+                            <div class="btn-group float-right mb-3">
                                 <a href="<?= site_url('/rbac/user/create') ?>" class="btn sbold btn-primary"> Tambah
                                     <i class="fa fa-plus"></i>
                                 </a>
