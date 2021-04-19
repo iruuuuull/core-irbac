@@ -50,7 +50,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |		my-controller/my-method	-> my_controller/my_method
 */
 $route['default_controller'] = 'SiteController/actionIndex';
-$route['404_override'] = '';
+$route['404_override'] = 'SiteController/action404NotFound';
 $route['translate_uri_dashes'] = FALSE;
 
 # START API
@@ -68,6 +68,8 @@ $route['site/login'] = 'SiteController/actionLogin';
 $route['site/logout'] = 'SiteController/actionLogout';
 $route['site/lock'] = 'SiteController/actionLock';
 $route['site/google-auth'] = 'SiteController/actionGoogleAuth';
+$route['site/404-not-found'] = 'SiteController/action404NotFound';
+$route['site/401-unauthorized'] = 'SiteController/action401Unauthorized';
 # END SITE
 
 # START PROFIL
