@@ -32,6 +32,7 @@ class Helpers
         get_instance()->load->model([
             'master/user',
             'master/group',
+            'rbac/allowed',
         ]);
 	}
 
@@ -184,8 +185,14 @@ class Helpers
 
     public static function getAllowed()
     {
-        // return $this->CI->allowed->getAll();
-        return [];
+        $allows = (new self)->CI->allowed->getAll();
+
+        $allowed = [];
+        foreach ($allows as $key => $allow) {
+            $allowed[] = $allow->allowed;
+        }
+
+        return $allowed;
     }
 
     public function isSuperAdmin()
