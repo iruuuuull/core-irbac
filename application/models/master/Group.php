@@ -49,4 +49,76 @@ class Group extends MY_Model {
 		return array_unique($groups);
 	}
 
+	public function assignedPermissions()
+	{
+		return $this->hasMany('authassignment', 'group_id', 'id');
+	}
+
+	public function addAssignment($permissions)
+    {
+        if (!empty($permissions) && is_array($permissions)) {
+            try {
+                $this->db->trans_begin();
+
+                foreach ($permissions as $permission) {
+                    $this->_add($permission);
+                }
+
+                $this->db->trans_commit();
+
+            } catch (Exception $exc) {
+                $this->db->trans_rollback();
+                return false;
+            }
+
+            return true;
+        }
+    }
+
+    public function removeAssignment($permissions)
+    {
+    	if (!empty($permissions) && is_array($permissions)) {
+            try {
+            	$this->db->trans_begin();
+
+	            foreach ($permissions as $permission) {
+                	$this->_remove($permission);
+	            }
+
+	            $this->db->trans_commit();
+
+            } catch (Exception $exc) {
+                $this->db->trans_rollback();
+            	return false;
+            }
+        }
+    }
+
+    private function _add($permission)
+    {
+    	$model_permission = $this->permission->findOne(['name' => $permission]);
+
+        if (!empty($permission) && !empty($model_permission)) {
+            $model = new Authassignment;
+            $model->auth_item_id = $model_permission->id;
+            $model->group_id = $this->id;
+            return $model->save();
+        }
+
+        return false;
+    }
+
+    private function _remove($permission)
+    {
+        $model_permission = $this->permission->findOne(['name' => $permission]);
+
+        if (!empty($permission) && !empty($model_permission)) {
+            return $this->authassignment->delete([
+            	'auth_item_id' => $model_permission->id, 
+            	'group_id' => $this->id
+            ]);
+        }
+        return false;
+    }
+
 }
