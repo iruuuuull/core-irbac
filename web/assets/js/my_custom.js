@@ -98,6 +98,8 @@ $(document).ready(function() {
       width: '100%'
     });
   }
+
+  autoActiveSidebar();
 });
 
 /* AWAL SWAL ALERT */
@@ -555,3 +557,21 @@ function setDropdownValue(id, value) {
     }, 500);
   }
 }
+
+/* MULAI AUTO ACTIVE PARENT MENU */
+function autoActiveSidebar() {
+  let li_active = $('.nav-sidebar').find('a.active');
+
+  if (li_active.parent().parent().length > 0) {
+    li_active.parent().parent().each(function(index, el) {
+
+      if ($(this).hasClass('nav-treeview') && !$(this).prev('a').hasClass('active')) {
+        $(this).prev('a').addClass('active');
+        $(this).css('display', 'block');
+        $(this).parent('li.nav-item').addClass('menu-open');
+        autoActiveSidebar();
+      }
+    });
+  }
+}
+/* AKHIR AUTO ACTIVE PARENT MENU */
