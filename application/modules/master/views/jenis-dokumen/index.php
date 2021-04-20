@@ -78,7 +78,7 @@
 
                                             <div class="col-md-1">
                                                 <a href="javascript:;" data-repeater-delete class="btn btn-danger mt-repeater-delete">
-                                                    <i class="fa fa-close"></i>
+                                                    <i class="fa fa-times"></i>
                                                 </a>
                                             </div>
                                         </div>
