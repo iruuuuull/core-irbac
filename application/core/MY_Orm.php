@@ -15,6 +15,8 @@ class MY_Orm extends CI_Model// implements \ArrayAccess
 {
     /**
      * Database Configuration for read-write master
+     * biar bisa multiple database di model tertentu
+     * 1 model 1 table 1 database
      * 
      * @var object|string|array CI DB ($this->db as default), CI specific group name or CI database config array
      */
@@ -1787,6 +1789,11 @@ class MY_Orm extends CI_Model// implements \ArrayAccess
         return $this->$offset;
     }
 
+    /**
+     * Set nama kolom dan isi value
+     * id pembuat dan/atau id pengubah
+     * @return [type] [description]
+     */
     public function blameableBehavior()
     {
         return [
@@ -1796,6 +1803,13 @@ class MY_Orm extends CI_Model// implements \ArrayAccess
         ];
     }
 
+    /**
+     * Menyisipkan informasi pembuat atau pengubah data 
+     * sebelum proses simpan atau edit
+     * @param  boolean $insert      [description]
+     * @param  [type]  &$attributes [description]
+     * @return [type]               [description]
+     */
     private function _blameableBehavior($insert = true, &$attributes)
     {
         $blames = $this->blameableBehavior();
@@ -1813,6 +1827,12 @@ class MY_Orm extends CI_Model// implements \ArrayAccess
         return $attributes;
     }
 
+    /**
+     * Get data attribute dari activerecord data
+     * (biasanya berupa nama kolom)
+     * @param  string $column [description]
+     * @return [type]         [description]
+     */
     public function getAttributes($column = '')
     {
         if ($column) {
@@ -1822,6 +1842,12 @@ class MY_Orm extends CI_Model// implements \ArrayAccess
         return $this->_readProperties;
     }
 
+    /**
+     * Ubah query builder CI jadi active record MY_ORM
+     * untuk banyak baris data
+     * @param  [type] $record [description]
+     * @return [type]         [description]
+     */
     public function queryAll($record)
     {
         $instance = (isset($this)) ? $this : new static;
@@ -1846,6 +1872,12 @@ class MY_Orm extends CI_Model// implements \ArrayAccess
         return $set;
     }
 
+    /**
+     * Ubah query builder CI jadi active record MY_ORM
+     * tapi untuk 1 baris data
+     * @param  [type] $record [description]
+     * @return [type]         [description]
+     */
     public function queryOne($record)
     {
         $instance = (isset($this)) ? $this : new static;
