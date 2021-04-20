@@ -2,12 +2,12 @@
 
 <div class="row">
     <div class="col-md-12">
-        <div class="portlet light bordered">
-            <div class="portlet-body">
+        <div class="card light bordered">
+            <div class="card-body">
             	<div class="table-toolbar">
                     <div class="row">
-                        <div class="col-md-6">
-                            <div class="btn-group">
+                        <div class="col-md-12">
+                            <div class="btn-group mb-3">
                                 <button id="btn-add" class="btn sbold btn-primary"> Tambah
                                     <i class="fa fa-plus"></i>
                                 </button>
@@ -60,21 +60,22 @@
                                         	]); ?>
                                         </div>
                                         <div class="col-md-1">
-                                            <a href="javascript:;" data-repeater-delete class="btn btn-danger mt-repeater-delete">
-                                                <i class="fa fa-close"></i>
+                                            <?= form_label(''); ?>
+                                            <a href="javascript:;" data-repeater-delete class="btn btn-danger mt-repeater-delete mt-2">
+                                                <i class="fa fa-times"></i>
                                             </a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <a href="javascript:;" data-repeater-create class="btn btn-info mt-repeater-add">
+                            <a href="javascript:;" data-repeater-create class="btn btn-info mt-repeater-add mt-3">
                                 <i class="fa fa-plus"></i> Tambah Jabatan</a>
                         </div>
 
 	        		<?= form_close(); ?>
             	</fieldset>
 
-            	<fieldset id="field-single" hidden>
+            	<fieldset id="field-single" style="display: none;">
             		<?= form_open('', ['id' => 'form-single']); ?>
 
             			<div class="form-group">
