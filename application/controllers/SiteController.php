@@ -12,8 +12,6 @@ class SiteController extends CI_Controller {
 			'transaksi/userdetail',
 			'master/status',
 			'master/unitgroup',
-			'master/kodesurat',
-			'master/letterowner',
 		]);
 	}
 
