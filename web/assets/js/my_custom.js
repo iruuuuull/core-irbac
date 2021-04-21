@@ -589,3 +589,9 @@ function stringStrip(evt) {
   }
 }
 /* AKHIR Custom Regex */
+
+if (jQuery().bootstrapSwitch) {
+  $(".make-switch").each(function(){
+    $(this).bootstrapSwitch('state', $(this).prop('checked'));
+  });
+}
