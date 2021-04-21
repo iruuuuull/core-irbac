@@ -47,11 +47,14 @@ class AuthHelper
 		            $this->CI->session->set_flashdata('info', 'Halaman terkunci, silahkan login');
 		            return redirect('site/lock');
 		        }
-		    } elseif (in_array(uri_string(), $this->allowed) || $this->checkPermission()) {
-		    	return true;
 		    }
+		    # Hapus komentar pada kondisi dibawah ini untuk mengaktifkan fitur RBAC
+		    // elseif (in_array(uri_string(), $this->allowed) || $this->checkPermission()) {
+		    // 	return true;
+		    // }
 		}
 
+		return true;
 	}
 
 	public function checkPermission()
@@ -104,7 +107,8 @@ class AuthHelper
         if ($this->isGuest()) {
 			return redirect('site/login');
         } else {
-        	return redirect('site/401-unauthorized');
+        	return show_error('Anda tidak memiliki hak akses ke halaman ini', 401);
+        	// return redirect('site/401-unauthorized');
         }
     }
 
@@ -115,6 +119,7 @@ class AuthHelper
     		return $this->denyAccess();
     	}
 
-        return redirect('site/404-not-found');
+    	return show_error('Halaman tidak ditemukan dong ah pun.', 404);
+        // return redirect('site/404-not-found');
     }
 }

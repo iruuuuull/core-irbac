@@ -139,32 +139,6 @@ class SiteController extends CI_Controller {
 
 		return redirect('/site/login', 'refresh');
 	}
-
-	public function action404NotFound()
-	{
-		set_status_header(404, 'Page Not Found');
-
-		$this->layout->title = '404';
-
-		$this->layout->render('error_page', [
-			'status_code' => 404,
-			'title' => 'Halaman tidak ditemukan',
-			'message' => 'Kami tidak bisa menemukan halaman yang anda cari',
-		]);
-	}
-
-	public function action401Unauthorized()
-	{
-		set_status_header(401, 'Unauthorized');
-
-		$this->layout->title = '401';
-
-		$this->layout->render('error_page', [
-			'status_code' => 401,
-			'title' => 'Tidak memiliki akses',
-			'message' => 'Anda tidak memiliki hak akses pada halaman tersebut',
-		]);
-	}
 }
 
 /* End of file SiteController.php */

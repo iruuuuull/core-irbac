@@ -68,8 +68,6 @@ $route['site/login'] = 'SiteController/actionLogin';
 $route['site/logout'] = 'SiteController/actionLogout';
 $route['site/lock'] = 'SiteController/actionLock';
 $route['site/google-auth'] = 'SiteController/actionGoogleAuth';
-$route['site/404-not-found'] = 'SiteController/action404NotFound';
-$route['site/401-unauthorized'] = 'SiteController/action401Unauthorized';
 # END SITE
 
 # START PROFIL
