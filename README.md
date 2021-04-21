@@ -7,7 +7,7 @@ Core dari [Codeigniter 3](https://github.com/bcit-ci/CodeIgniter) yg sudah diuba
 * Template admin dari [AdminLTE](https://adminlte.io/themes/dev/AdminLTE/)
 * Modul RBAC yg lumayan mirip dengan yg dibuat [mdmunir](https://github.com/mdmunir/yii2-admin) (Coming Soon)
 
-## Cara Install Dan Join Development
+## Cara Install
 * Install aplikasi [git](https://git-scm.com/downloads)
 * Pergi ke directory htdocs `Drive:\xampp\htdocs` (sesuaikan dengan aplikasi stand-alone server anda)
 * Buka aplikasi gitbash di directory tersebut
