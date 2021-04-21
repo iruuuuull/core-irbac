@@ -2,12 +2,12 @@
 
 <div class="row">
     <div class="col-md-12">
-        <div class="portlet light bordered">
-            <div class="portlet-body">
+        <div class="card light bordered">
+            <div class="card-body">
             	<div class="table-toolbar">
                     <div class="row">
                         <div class="col-md-6">
-                            <div class="btn-group">
+                            <div class="btn-group mb-3">
                                 <button id="btn-add" class="btn sbold btn-primary"> Tambah
                                     <i class="fa fa-plus"></i>
                                 </button>
