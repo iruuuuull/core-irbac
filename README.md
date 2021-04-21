@@ -13,7 +13,7 @@ Core dari [Codeigniter 3](https://github.com/bcit-ci/CodeIgniter) yg sudah diuba
 * Buka aplikasi gitbash di directory tersebut
 	* Klik kanan di directory
 	* Pilih Git Bash Here
-* Ketik command `git clone https://github.com/ilhamdsofyan/core_irbac.git` untuk mendownload project
+* Ketik command `git clone https://github.com/ilhamdsofyan/core-irbac.git` untuk mendownload project
 * Copy file `.env-example` dan ubah file yg sudah di-copy jadi `.env`
 * Sesuaikan koneksi db anda di file tersebut
 * (Tambahan) Saya sarankan untuk akses file dengan menggunakan fitur [vhost](https://www.cloudways.com/blog/configure-virtual-host-on-windows-10-for-wordpress/)
