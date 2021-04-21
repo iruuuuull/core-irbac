@@ -1,7 +1,7 @@
 # CORE IRBAC
 Core dari [Codeigniter 3](https://github.com/bcit-ci/CodeIgniter) yg sudah diubah dan ditambah beberapa configurasi
 
-## Apa yg Sudah Harus Di-Install
+## Apa yg Sudah Di-Install
 * HMVC dari [crypt](https://github.com/Crypt/Codeigniter-HMVC)
 * Custom model dari [yidas](https://github.com/yidas/codeigniter-model) dengan sedikit penyesuaian
 * Template admin dari [AdminLTE](https://adminlte.io/themes/dev/AdminLTE/)
