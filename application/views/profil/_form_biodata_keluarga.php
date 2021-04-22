@@ -51,8 +51,8 @@
 		<div class="modal-content">
 				<!-- heading modal -->
 			<div class="modal-header">
+				<h5 class="modal-title">Form Biodata Keluarga</h5>
 				<button type="button" class="close" data-dismiss="modal">&times;</button>
-				<h4 class="modal-title">Form Biodata Keluarga</h4>
 			</div>
 				<!-- body modal -->
 			<div class="modal-body">
@@ -155,7 +155,7 @@
 			</div>
 				<!-- footer modal -->
 			<div class="modal-footer">
-					<button type="submit" id="btn-simpan-keluarga" class="btn green mt-3" form="form-add-keluarga">Simpan</button>
+					<button type="submit" id="btn-simpan-keluarga" class="btn btn-success mt-3" form="form-add-keluarga">Simpan</button>
 					<button type="button" class="btn btn-danger" data-dismiss="modal">Tutup</button>
 			</div>
 		</div>

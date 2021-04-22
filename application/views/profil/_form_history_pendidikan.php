@@ -61,8 +61,8 @@
 		<div class="modal-content">
 				<!-- heading modal -->
 		<div class="modal-header">
+			<h5 class="modal-title">Form History Pendidikan</h5>
 			<button type="button" class="close" data-dismiss="modal">&times;</button>
-			<h4 class="modal-title">Form History Pendidikan</h4>
 		</div>
 				<!-- body modal -->
 		<div class="modal-body">
@@ -176,7 +176,7 @@
 			</div>
 				<!-- footer modal -->
 			<div class="modal-footer">
-				<button type="submit" class="btn green" id="btn-simpan-pendidikan" form="form-add-pendidikan">Simpan</button>
+				<button type="submit" class="btn btn-success" id="btn-simpan-pendidikan" form="form-add-pendidikan">Simpan</button>
 				<button type="button" class="btn btn-danger" id="btn-close-pendidikan" data-dismiss="modal">Tutup</button>
 			</div>
 		</div>

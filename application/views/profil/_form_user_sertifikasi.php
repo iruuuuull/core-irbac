@@ -61,7 +61,7 @@
 				<!-- heading modal -->
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal">&times;</button>
-				<h4 class="modal-title">Form Data Sertifikasi</h4>
+				<h5 class="modal-title">Form Data Sertifikasi</h5>
 			</div>
 				<!-- body modal -->
 			<div class="modal-body">
@@ -150,7 +150,7 @@
 			</div>
 				<!-- footer modal -->
 			<div class="modal-footer">
-				<button type="submit" id="btn-simpan-sertifikasi" class="btn green mt-3" form="form-add-sertifikasi">Simpan</button>
+				<button type="submit" id="btn-simpan-sertifikasi" class="btn btn-success mt-3" form="form-add-sertifikasi">Simpan</button>
 				<button type="button" class="btn btn-danger" data-dismiss="modal">Tutup</button>
 			</div>
 		</div>

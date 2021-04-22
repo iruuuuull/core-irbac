@@ -56,8 +56,8 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-                <h4 class="modal-title">Form Pengalaman Kerja</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h5 class="modal-title">Form Pengalaman Kerja</h5>
             </div>
             <div class="modal-body">
             	<fieldset id="field-experience">
@@ -180,7 +180,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn dark btn-outline" data-dismiss="modal">Tutup</button>
-                <button type="submit" id="btn-save-experience" class="btn green" form="form-experience">
+                <button type="submit" id="btn-save-experience" class="btn btn-success" form="form-experience">
                 	<span class="ladda-label">Simpan</span></button>
             </div>
         </div>

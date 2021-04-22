@@ -36,8 +36,8 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-                <h4 class="modal-title">Modal Title</h4>
+                <h5 class="modal-title">Modal Title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             </div>
             <div class="modal-body">
             	<fieldset id="field-multiple">
@@ -99,7 +99,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn dark btn-outline" data-dismiss="modal">Tutup</button>
-                <button type="button" id="btn-save" class="btn green ladda-button" data-style="expand-right">
+                <button type="button" id="btn-save" class="btn btn-success ladda-button" data-style="expand-right">
                 	<span class="ladda-label">Simpan</span></button>
             </div>
         </div>

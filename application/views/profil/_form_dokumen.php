@@ -55,7 +55,7 @@
 	if($data_login >= $data_profil): ?>
     <?= $this->html->button('Simpan', [
     	'type' => 'submit',
-		'class' => 'btn green',
+		'class' => 'btn btn-success',
 		'visible' => (
 			($this->session->userdata('identity')->id == def($user_detail, 'user_id'))
 			|| $this->helpers->isSuperAdmin() 
@@ -72,7 +72,7 @@
     <?php else: ?>
     <?= $this->html->button('Simpan', [
     	'type' => 'submit',
-		'class' => 'btn green',
+		'class' => 'btn btn-success',
 		'visible' => (
 			($this->session->userdata('identity')->id == def($user_detail, 'user_id'))
 			|| $this->helpers->isSuperAdmin() || $this->helpers->isAdminDirektorat() ||  $this->helpers->isAdminCabang()

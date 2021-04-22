@@ -64,7 +64,7 @@
 				<!-- heading modal -->
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal">&times;</button>
-				<h4 class="modal-title">Form History Karir LP3I</h4>
+				<h5 class="modal-title">Form History Karir LP3I</h5>
 			</div>
 				<!-- body modal -->
 			<div class="modal-body">		
@@ -211,7 +211,7 @@
 			</div>
 			<!-- footer modal -->
 			<div class="modal-footer">
-				<input type="submit" id="btn-simpan-karir" class="btn green" form="form-add-karir"></button>
+				<input type="submit" id="btn-simpan-karir" class="btn btn-success" form="form-add-karir"></button>
 				<button type="button" class="btn btn-danger" data-dismiss="modal">Tutup</button>
 			</div>
 		</div>

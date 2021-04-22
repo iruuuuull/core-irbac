@@ -231,7 +231,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Ubah Foto Profil</h4>
+                <h5 class="modal-title">Ubah Foto Profil</h5>
             </div>
             <div class="modal-body">
                 <?= form_open('', ['id' => 'form-photo', 'class' => 'text-center', 'enctype' => 'multipart/form-data']); ?>
@@ -244,7 +244,7 @@
                     <input type="hidden" id="h" name="h" />
 
                     <div class="fileinput fileinput-new" data-provides="fileinput">
-                        <span class="btn green btn-file">
+                        <span class="btn btn-success btn-file">
                             <span class="fileinput-new"> Pilih File </span>
                             <span class="fileinput-exists"> Ubah </span>
                             <input type="file" name="profil_pic" id="file-profile" 
@@ -269,7 +269,7 @@
                 <span class="text-info pull-left">Ukuran file maksimum adalah 500KB</span>
 
                 <button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
-                <button type="submit" class="btn green" form="form-photo" id="btn-simpan-foto" style="display: none">Simpan</button>
+                <button type="submit" class="btn btn-success" form="form-photo" id="btn-simpan-foto" style="display: none">Simpan</button>
             </div>
         </div>
 
@@ -281,8 +281,8 @@
 
         <div class="modal-content">
             <div class="modal-header">
+                <h5 class="modal-title">Ubah Password</h5>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Ubah Password</h4>
             </div>
             <div class="modal-body">
                 <?= form_open("/profil/ubah-password/{$user->id}", ['id' => 'form-password']); ?>
@@ -316,7 +316,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
-                <button type="submit" class="btn green" form="form-password" id="btn-ubah-password">Simpan</button>
+                <button type="submit" class="btn btn-success" form="form-password" id="btn-ubah-password">Simpan</button>
             </div>
         </div>
 
