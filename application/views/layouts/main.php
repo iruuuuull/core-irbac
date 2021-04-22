@@ -34,7 +34,7 @@
 				<!-- Right navbar links -->
 				<ul class="navbar-nav ml-auto">
 					<!-- Notifications Dropdown Menu -->
-					<?php $notifikasi = $this->session->userdata('notifikasi'); ?>
+					<?php if ($notifikasi = $this->session->userdata('notifikasi')): ?>
 					<li class="nav-item dropdown">
 						<a class="nav-link" data-toggle="dropdown" href="#">
 							<i class="far fa-bell"></i>
@@ -82,6 +82,8 @@
 							<a href="<?= site_url('/notifikasi') ?>" class="dropdown-item dropdown-footer">Lihat Semua Notifikasi</a>
 						</div>
 					</li>
+					<?php endif ?>
+
 					<li class="nav-item dropdown user-menu">
 				        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
 							<?php if (!empty($this->session->userdata('detail_identity')->profile_pic)): ?>
@@ -92,7 +94,7 @@
                             	class="user-image img-circle elevation-2" alt="User Image" />
                             <?php endif ?>
 
-							<span class="d-none d-md-inline"><?= $this->session->userdata('identity')->username; ?></span>
+							<span class="d-none d-md-inline"><?= def($this->session->userdata('identity'), 'username', 'Guest'); ?></span>
 				        </a>
 						<ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
 							<!-- User image -->
@@ -101,12 +103,12 @@
 	                            <img src="<?= $this->session->userdata('detail_identity')->profile_pic ?>"
 	                            	class="img-circle elevation-2" alt="User Image" />
 	                            <?php else: ?>
-	                            <img src="<?= base_url('/web/assets/pages/img/no_avatar.jpg') ?>"
+	                            <img src="<?= base_url('/web/images/no_avatar.jpg') ?>"
 	                            	class="img-circle elevation-2" alt="User Image" />
 	                            <?php endif ?>
 
 								<p>
-									<?= $this->session->userdata('identity')->username; ?>
+									<?= def($this->session->userdata('identity'), 'username', 'Guest'); ?>
 									<!-- <small>Member since Nov. 2012</small> -->
 								</p>
 							</li>
@@ -217,8 +219,8 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-                        <h4 class="modal-title"></h4>
+                        <h5 class="modal-title"></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     </div>
                     <div class="modal-body">File tidak ditemukan atau browser tidak support.</div>
                     <div class="modal-footer">

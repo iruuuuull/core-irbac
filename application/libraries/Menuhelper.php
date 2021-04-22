@@ -62,12 +62,14 @@ class Menuhelper
         $this->noDefaultAction = false;
         $this->noDefaultRoute = false;
 
-        $items = $this->normalizeItems($this->items, $hasActiveChild);
-        if (!empty($items)) {
-            $options = $this->options;
-            $tag = $this->CI->helpers->arrayRemove($options, 'tag', 'ul');
+        if ($this->items) {
+            $items = $this->normalizeItems($this->items, $hasActiveChild);
+            if (!empty($items)) {
+                $options = $this->options;
+                $tag = $this->CI->helpers->arrayRemove($options, 'tag', 'ul');
 
-            echo Html::tag($tag, $this->renderItems($items), $options);
+                echo Html::tag($tag, $this->renderItems($items), $options);
+            }
         }
     }
 

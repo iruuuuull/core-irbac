@@ -5,8 +5,8 @@
 		<!-- Modal content-->
 		<div class="modal-content">
 			<div class="modal-header">
+				<h5 class="modal-title"><?= $title ?? '' ?></h5>
 				<button type="button" class="close" data-dismiss="modal">&times;</button>
-				<h4 class="modal-title"><?= $title ?? '' ?></h4>
 			</div>
 			<div class="modal-body">
 				<?php /*Untuk melakukan absen secara online, mohon perhatikan beberapa hal berikut ini:
