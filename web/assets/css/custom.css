@@ -299,3 +299,7 @@
       background-color: #e73d4a; }
   .panel-danger > .panel-footer + .panel-collapse > .panel-body {
     border-bottom-color: #fbe1e3; }
+
+.fileinput {margin-bottom: 0; }
+.fileinput .close { float: none; }
+.fileinput .input-group {white-space: nowrap;overflow: hidden; }

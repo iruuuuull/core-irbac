@@ -10,7 +10,7 @@
 <?php 
 
 	if($data_login >= $data_profil): ?>
-    <div class="btn-group">
+    <div class="btn-group mb-3">
     	<?= $this->html->button('Tambah <i class="fa fa-plus"></i>', [
     		'id' => 'btn-add-pendidikan',
     		'class' => 'btn sbold btn-primary',
@@ -22,7 +22,7 @@
     	]) ?>
     </div>
     <?php else: ?>
-    <div class="btn-group">
+    <div class="btn-group mb-3">
     	<?= $this->html->button('Tambah <i class="fa fa-plus"></i>', [
     		'id' => 'btn-add-pendidikan',
     		'class' => 'btn sbold btn-primary',

@@ -2,29 +2,29 @@
 
 <?php 
 	if($data_login >= $data_profil): ?>
-     	 <div class="btn-group">
-    	<?= $this->html->button('Tambah <i class="fa fa-plus"></i>', [
-    		'id' => 'btn-add-keluarga',
-    		'class' => 'btn sbold btn-primary',
-    		'visible' => 
-    		 (
-    		 	($this->session->userdata('identity')->id == def($user_detail, 'user_id'))
-    		 	|| $this->helpers->isSuperAdmin()
-    		 )
-    	]) ?>
-    </div>
+	 	<div class="btn-group mb-3">
+	    	<?= $this->html->button('Tambah <i class="fa fa-plus"></i>', [
+	    		'id' => 'btn-add-keluarga',
+	    		'class' => 'btn sbold btn-primary',
+	    		'visible' => 
+	    		 (
+	    		 	($this->session->userdata('identity')->id == def($user_detail, 'user_id'))
+	    		 	|| $this->helpers->isSuperAdmin()
+	    		 )
+	    	]) ?>
+	    </div>
     <?php else: ?>
-     	 <div class="btn-group">
-    	<?= $this->html->button('Tambah <i class="fa fa-plus"></i>', [
-    		'id' => 'btn-add-keluarga',
-    		'class' => 'btn sbold btn-primary',
-    		'visible' => 
-    		 (
-    		 	($this->session->userdata('identity')->id == def($user_detail, 'user_id'))
-    		 	|| $this->helpers->isSuperAdmin() || $this->helpers->isAdminDirektorat() ||  $this->helpers->isAdminCabang()
-    		 )
-    	]) ?>
-    </div>
+	 	<div class="btn-group mb-3">
+	    	<?= $this->html->button('Tambah <i class="fa fa-plus"></i>', [
+	    		'id' => 'btn-add-keluarga',
+	    		'class' => 'btn sbold btn-primary',
+	    		'visible' => 
+	    		 (
+	    		 	($this->session->userdata('identity')->id == def($user_detail, 'user_id'))
+	    		 	|| $this->helpers->isSuperAdmin() || $this->helpers->isAdminDirektorat() ||  $this->helpers->isAdminCabang()
+	    		 )
+	    	]) ?>
+	    </div>
     <?php endif ?>
 
 </div>

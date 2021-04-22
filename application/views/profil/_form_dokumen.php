@@ -26,7 +26,7 @@
 			                    	<?= substr(def($existing, 'path_dokumen'), strrpos(def($existing, 'path_dokumen'), '/') + 1) ?>
 			                    <span class="fileinput-filename"></span>
 			                </div>
-			                <span class="input-group-addon btn default btn-file">
+			                <span class="input-group-addon btn btn-default btn-file">
 			                    <span class="fileinput-new"> Pilih File </span>
 			                    <span class="fileinput-exists"> Ubah </span>
 			                    <input type="hidden" value="" name="...">
@@ -36,7 +36,7 @@
 			                		'accept' => 'image/*,application/pdf'
 			                	]); ?>
 			                </span>
-			                <a href="javascript:;" class="input-group-addon btn red fileinput-exists" data-dismiss="fileinput"> Hapus </a>
+			                <a href="javascript:;" class="input-group-addon btn btn-danger fileinput-exists" data-dismiss="fileinput"> Hapus </a>
 			            </div>
 		    			<div class="help-block">
 		    				<?php if (!empty($existing->path_dokumen)): ?>
