@@ -4,6 +4,8 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
 class Group extends MY_Model {
 
 	public $tableName = 'tbl_group';
+    public $datatable_columns = ['id', 'label', 'desc'];
+    public $datatable_search = ['label', 'desc'];
 	public $soft_delete = false;
 
 	const ADMIN = 1;
