@@ -24,6 +24,10 @@
 
     $(document).ready(function() {
         id = $("#user_id").val();
+
+        $('#dob').datetimepicker({
+            format: 'L'
+        });
     });
 
     $(document).on('click', '#btn_biodata', function() {

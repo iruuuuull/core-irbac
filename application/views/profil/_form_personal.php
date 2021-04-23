@@ -50,13 +50,19 @@
 			</div>
 			<div class="col-md-6">
 				<?= form_label('Tanggal Lahir', 'id_tanggal_lahir', ['class' => 'control-label']); ?>
-				<?php 
-				$tanggal_lahir = (int) strtotime(def($user_detail, 'tanggal_lahir')) ? date('d-m-Y', strtotime($user_detail->tanggal_lahir)) : '';
+				<div class="input-group date" id="dob" data-target-input="nearest">
+					<?php 
+					$tanggal_lahir = strtotime(def($user_detail, 'tanggal_lahir')) > 0 ? date('d-m-Y', strtotime($user_detail->tanggal_lahir)) : '';
 
-				echo form_input('Personal[tanggal_lahir]', $tanggal_lahir, [
-					'class' => 'form-control datepicker',
-					'id' => 'id_tanggal_lahir',
-				]); ?>
+					echo form_input('Personal[tanggal_lahir]', $tanggal_lahir, [
+						'class' => 'form-control datetimepicker-input',
+						'id' => 'id_tanggal_lahir',
+						'data-target' => 'dob',
+					]); ?>
+                    <div class="input-group-append" data-target="#dob" data-toggle="datetimepicker">
+                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                    </div>
+                </div>
 			</div>
 		</div>
 	</div>
