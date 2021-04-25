@@ -52,7 +52,7 @@ class SiteController extends CI_Controller {
 
 	public function actionLogin()
 	{
-		$this->layout->layout = 'login';
+		$this->layout->layout = 'lp3i/login';
 		$this->layout->title = 'Login';
 
 		if ($post = $this->input->post()) {
@@ -88,7 +88,7 @@ class SiteController extends CI_Controller {
 			$this->session->set_userdata(['status_login' => 'locked']);
 		}
 
-		$this->layout->layout = 'login';
+		$this->layout->layout = 'lp3i/login';
 		$this->layout->title = 'Login';
 
 		if ($post = $this->input->post()) {
