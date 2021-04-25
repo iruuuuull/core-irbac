@@ -474,6 +474,10 @@ img {
   margin-right: 10px;
 }
 
+.Accounts:hover {
+  background-color: #02afb8;
+}
+
 .Accounts:hover .dropdownAccount {
   display: block;
 }

@@ -42,7 +42,7 @@ class SiteController extends CI_Controller {
 		unset($employee_summary['unit_direktorat']);
 		unset($employee_summary['unit_politeknik']);
 
-		$this->layout->layout = 'main';
+		$this->layout->layout = 'lp3i/main';
 		$this->layout->view_js = '_partial/index_js';
 		$this->layout->view_css = '_partial/index_css';
 		$this->layout->render('index', [
