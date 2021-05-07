@@ -1,4 +1,5 @@
 <!-- css -->
+<link rel="stylesheet" href="<?= base_url('/web/assets/lp3i/css/bootstrap.min.css') ?>">
 <link rel="stylesheet" href="<?= base_url('/web/assets/lp3i/css/style.css') ?>">
 <link rel="stylesheet" href="<?= base_url('/web/assets/lp3i/css/content.css') ?>">
 <link rel="stylesheet" href="<?= base_url('/web/assets/lp3i/css/mobile.css') ?>">

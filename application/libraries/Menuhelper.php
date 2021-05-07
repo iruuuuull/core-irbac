@@ -82,10 +82,10 @@ class Menuhelper
         }
 
         if (isset($item['items'])) {
-            $labelTemplate = '<a href="{url}" class="nav-link menu-collaps {active}">{icon} {label}</a>';
-            $linkTemplate = '<a href="{url}" class="nav-link menu-collaps {active}">{icon} {label}</a>';
+            $linkTemplate = '<a href="{url}" class="nav-link menu-collaps {active}"><span class="menu-icon">{icon}
+                            </span><span class="menu-title">{label}</span></a>';
         } else {
-            $labelTemplate = $this->labelTemplate;
+            // $labelTemplate = $this->labelTemplate;
             $linkTemplate = $this->linkTemplate;
         }
 

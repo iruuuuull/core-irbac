@@ -68,38 +68,39 @@
         <!-- side-bar menu end -->
 
         <div class="content" style="height: 100vh;">
-            <!-- BEGIN ALERT FLASHDATA -->
-            <?php if ($this->session->flashdata('danger')): ?>
-                <div class="alert alert-danger alert-dismissible" style="margin-top: 10px">
-                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                    <?= $this->session->flashdata('danger'); ?>
-                </div>
-            <?php endif ?>
+            <div class="container">
+                <!-- BEGIN ALERT FLASHDATA -->
+                <?php if ($this->session->flashdata('danger')): ?>
+                    <div class="alert alert-danger alert-dismissible" style="margin-top: 10px">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <?= $this->session->flashdata('danger'); ?>
+                    </div>
+                <?php endif ?>
 
-            <?php if ($this->session->flashdata('info')): ?>
-                <div class="alert alert-info alert-dismissible" style="margin-top: 10px">
-                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                    <?= $this->session->flashdata('info'); ?>
-                </div>
-            <?php endif ?>
+                <?php if ($this->session->flashdata('info')): ?>
+                    <div class="alert alert-info alert-dismissible" style="margin-top: 10px">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <?= $this->session->flashdata('info'); ?>
+                    </div>
+                <?php endif ?>
 
-            <?php if ($this->session->flashdata('warning')): ?>
-                <div class="alert alert-warning alert-dismissible" style="margin-top: 10px">
-                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                    <?= $this->session->flashdata('warning'); ?>
-                </div>
-            <?php endif ?>
+                <?php if ($this->session->flashdata('warning')): ?>
+                    <div class="alert alert-warning alert-dismissible" style="margin-top: 10px">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <?= $this->session->flashdata('warning'); ?>
+                    </div>
+                <?php endif ?>
 
-            <?php if ($this->session->flashdata('success')): ?>
-                <div class="alert alert-success alert-dismissible" style="margin-top: 10px">
-                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                    <?= $this->session->flashdata('success'); ?>
-                </div>
-            <?php endif ?>
-            <!-- END ALERT FLASHDATA -->
+                <?php if ($this->session->flashdata('success')): ?>
+                    <div class="alert alert-success alert-dismissible" style="margin-top: 10px">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <?= $this->session->flashdata('success'); ?>
+                    </div>
+                <?php endif ?>
+                <!-- END ALERT FLASHDATA -->
 
-            <?= $this->load->view($view, $data); ?>
-
+                <?= $this->load->view($view, $data); ?>
+            </div>
         </div>
 
         <footer>
