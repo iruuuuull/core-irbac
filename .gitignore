@@ -35,3 +35,6 @@ user_guide_src/cilexer/pycilexer.egg-info/*
 
 # Ignoring uploads directory
 /web/uploads/*
+
+*.log
+*.logs

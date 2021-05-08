@@ -27,3 +27,4 @@ if (!empty($view_js)) {
 
 <script src="<?= base_url('/web/assets/lp3i/js/script.js') ?>" defer></script>
 <script src="<?= base_url("/web/assets/js/my_custom.js") ?>" type="text/javascript"></script>
+<script src="<?= base_url("/web/assets/js/yii.js") ?>" type="text/javascript"></script>

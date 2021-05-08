@@ -818,16 +818,29 @@ img {
 
 .btn {
   border: none;
-
   outline: none;
-
   padding: 0.75rem 0.5rem;
-
   cursor: pointer;
-
   font-size: 16px;
-
   width: 50%;
+}
+
+.btn-normal {
+  display: inline-block;
+  font-weight: 400;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border: 1px solid transparent;
+  padding: .375rem .75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  border-radius: .25rem;
+  transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
 
 .btn-primary {
@@ -1381,7 +1394,7 @@ table.dataTable.no-footer {
   padding: 0.5rem !important;
 }
 
-.dataTables_wrapper .dataTables_paginate .paginate_button.previous,
+/*.dataTables_wrapper .dataTables_paginate .paginate_button.previous,
 .dataTables_wrapper .dataTables_paginate .paginate_button.next {
   background-color: rgba(77, 158, 165, 0.5);
 
@@ -1392,9 +1405,9 @@ table.dataTable.no-footer {
   border-radius: 5px;
 
   color: var(--primary-color) !important;
-}
+}*/
 
-.dataTables_wrapper .dataTables_paginate .paginate_button.current,
+/*.dataTables_wrapper .dataTables_paginate .paginate_button.current,
 .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
   color: #fff !important;
 
@@ -1423,9 +1436,9 @@ table.dataTable.no-footer {
   background: -o-linear-gradient(top, white 0%, #004269 100%);
 
   background: #004269;
-}
+}*/
 
-.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+/*.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
   color: #fff !important;
 
   border: none;
@@ -1453,12 +1466,12 @@ table.dataTable.no-footer {
   background: -o-linear-gradient(top, #d9d9d9 0%, #1e4269 100%);
 
   background: #1e4269 !important;
-}
+}*/
 
-.dataTables_wrapper .dataTables_paginate .paginate_button,
+/*.dataTables_wrapper .dataTables_paginate .paginate_button,
 .dataTables_wrapper .dataTables_paginate {
   color: var(--primary-color) !important;
-}
+}*/
 
 /* css table end */
 
