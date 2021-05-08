@@ -9,50 +9,21 @@ class SiteController extends CI_Controller {
 		
 		$this->load->model([
 			'forms/formlogin',
-			'transaksi/userdetail',
-			'master/status',
-			'master/unitgroup',
 		]);
 	}
 
 	public function actionIndex()
-	{	
-		
-		$employee_by_status = $this->userdetail->getSumEmployeeStatus([
-			Status::PERMANENT,
-			Status::CONTRACT,
-			Status::PROB,
-		]);
-		$employee_by_unit = $this->userdetail->getSumEmployeeUnit([
-			Unitgroup::HEAD_OFFICE,
-			Unitgroup::COLLEGE,
-			Unitgroup::PTS,
-			Unitgroup::POLITEKNIK,
-		]);
-
-		$employee_summary = array_merge($employee_by_status, $employee_by_unit);
-
-		# Gabung probation dengan contract
-		$employee_summary['status_contract'] = $employee_summary['status_contract'] + $employee_summary['status_probation'];
-		unset($employee_summary['status_probation']);
-
-		# Gabung headoffice ke college dan politeknik ke pts
-		$employee_summary['unit_college'] = $employee_summary['unit_college'] + $employee_summary['unit_direktorat'];
-		$employee_summary['unit_pts'] = $employee_summary['unit_pts'] + $employee_summary['unit_politeknik'];
-		unset($employee_summary['unit_direktorat']);
-		unset($employee_summary['unit_politeknik']);
-
-		$this->layout->layout = 'main';
+	{
+		$this->layout->layout = 'lp3i/main';
 		$this->layout->view_js = '_partial/index_js';
 		$this->layout->view_css = '_partial/index_css';
-		$this->layout->render('index', [
-			'employee_summary' => $employee_summary,
-		]);
+
+		$this->layout->render('index');
 	}
 
 	public function actionLogin()
 	{
-		$this->layout->layout = 'login';
+		$this->layout->layout = 'lp3i/login';
 		$this->layout->title = 'Login';
 
 		if ($post = $this->input->post()) {
@@ -88,7 +59,7 @@ class SiteController extends CI_Controller {
 			$this->session->set_userdata(['status_login' => 'locked']);
 		}
 
-		$this->layout->layout = 'login';
+		$this->layout->layout = 'lp3i/login';
 		$this->layout->title = 'Login';
 
 		if ($post = $this->input->post()) {

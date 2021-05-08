@@ -22,7 +22,6 @@ class Formlogin extends CI_Model {
         $this->ci->load->model([
             'master/user',
             'master/menu',
-            'transaksi/userdetail',
         ]);
     }
 
@@ -42,7 +41,6 @@ class Formlogin extends CI_Model {
                     'identity' => (object) $user->toArray(),
                     'menus' => $this->menu->getMenu(),
                     'group_id' => array_column($this->user->getUserGroups($user->id), 'group_id'),
-                    'detail_identity' => $this->getUserDetail()
                 ]);
 
                 return true;
@@ -68,7 +66,6 @@ class Formlogin extends CI_Model {
                     'identity' => $user->toArray(),
                     'menus' => $this->menu->getMenu(),
                     'group_id' => array_column($this->user->getUserGroups($user->id), 'group_id'),
-                    'detail_identity' => $this->getUserDetail(),
                     'google_access_token' => $auth
                 ]);
             }
@@ -144,25 +141,6 @@ class Formlogin extends CI_Model {
 
         return $names;
     }
-
-    public function getUserDetail()
-    {
-        $details = null;
-
-        if ($this->_user) {
-            $details = $this->_user->userDetail->toArray();
-
-            $details = multipleUnset($details, [
-                'created_at', 'created_by', 'updated_at', 'updated_by', 'deleted_at', 'deleted_by', 'id', 'user_id'
-            ]);
-
-            $details['profile_pic'] = $this->_user->userDetail->getImage();
-            $details['nama_lengkap'] = $this->_user->userDetail->mergeFullName();
-        }
-
-        return (object) $details;
-    }
-
 }
 
 /* End of file FormLogin.php */
