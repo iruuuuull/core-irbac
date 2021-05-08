@@ -4,7 +4,6 @@
 <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 <!-- overlayScrollbars -->
 <link rel="stylesheet" href="<?= base_url('/web/assets/css/adminlte.min.css') ?>">
-<link rel="stylesheet" href="<?= base_url('/web/assets/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css') ?>">
 <link rel="stylesheet" href="<?= base_url('/web/assets/plugins/daterangepicker/daterangepicker.css') ?>">
 <link rel="stylesheet" href="<?= base_url('/web/assets/plugins/sweetalert2/sweetalert2.css') ?>">
 <link rel="stylesheet" href="<?= base_url('/web/assets/css/custom.css') ?>">

@@ -1,38 +1,63 @@
-<!-- <div class="social-auth-links text-center mb-3">
-    <p>- OR -</p>
-    <a class="btn btn-block btn-danger googleplus" data-original-title="Goole Plus" href="<?= $google_url ?>">
-        <i class="fab fa-google-plus mr-2"></i> Sign in using Google+
-    </a>
-</div> -->
-
-<?= form_open('', ['class' => 'login']); ?>
-
-    <h2>Login</h2>
-    <div class="box-login">
-        <i class="fa fa-user"></i>
-        <?= form_input('username', $model->username, [
-            // 'class' => 'form-control',
-            'autocomplete' => 'off',
-            'placeholder' => 'Username',
-        ]); ?>
-    </div>  
-
-    <div class="box-login">
-        <i class="fa fa-lock"></i>
-        <?= form_password('password', $model->password, [
-            // 'class' => 'form-control',
-            'autocomplete' => 'off',
-            'placeholder' => 'Password',
-        ]); ?>
+<div class="login-box">
+    <div class="login-logo" style="background-color: rgba(255, 255, 255, 0.5);">
+        <a href="javascript:;" class="text-bold">IRBAC </a>
     </div>
+    <!-- /.login-logo -->
+    <div class="card">
+        <div class="card-body login-card-body">
+            <p class="login-box-msg">Sign in to start your session</p>
 
-    <div class="d-flex flex-end" style="padding-bottom: 1rem;">
-        <a href="#"> Forgot Password</a>
+            <?= form_open(''); ?>
+                <div class="input-group mb-3">
+                    <?= form_input('username', $model->username, [
+                        'class' => 'form-control',
+                        'autocomplete' => 'off',
+                        'placeholder' => 'Username',
+                    ]); ?>
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-user"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="input-group mb-3">
+                    <?= form_password('password', $model->password, [
+                        'class' => 'form-control',
+                        'autocomplete' => 'off',
+                        'placeholder' => 'Password',
+                    ]); ?>
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-lock"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-8"></div>
+                    <!-- /.col -->
+                    <div class="col-4">
+                        <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+                    </div>
+                    <!-- /.col -->
+                </div>
+            <?= form_close(); ?>
+
+            <div class="social-auth-links text-center mb-3">
+                <p>- OR -</p>
+                <a class="btn btn-block btn-danger googleplus" data-original-title="Goole Plus" href="<?= $google_url ?>">
+                    <i class="fab fa-google-plus mr-2"></i> Sign in using Google+
+                </a>
+            </div>
+            <!-- /.social-auth-links -->
+
+            <p class="mb-1">
+                <!-- <a href="forgot-password.html">I forgot my password</a> -->
+            </p>
+        </div>
+        <!-- /.login-card-body -->
     </div>
-
-    <button class="btn-login" type="submit"> Login </button>
-
-<?= form_close(); ?>
+</div>
+<!-- /.login-box -->
 
 <script type="text/javascript">
     sessionStorage.clear();

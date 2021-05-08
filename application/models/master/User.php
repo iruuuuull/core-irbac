@@ -20,6 +20,8 @@ class User extends MY_Model {
     	$this->load->model([
     		'master/usergroup',
     		'master/group',
+            'master/unit',
+            'transaksi/userdetail',
     	]);
     }
 
@@ -48,6 +50,15 @@ class User extends MY_Model {
         $this->db->group_start();
             $this->db->where_in('tbl_group_user.group_id', $groups);
             $this->db->or_where(['tbl_group_user.group_id' => null]);
+        $this->db->group_end();
+
+        # Menampilkan list user berdasarkan unit
+        $this->db->join('tbl_user_detail', 'tbl_user_detail.user_id = tbl_user.id', 'left');
+
+        $this->db->group_start();
+            $this->db->where_in('tbl_user_detail.unit_id', $units);
+            $this->db->or_where(['tbl_user_detail.unit_id' => null]);
+            $this->db->or_where(['tbl_user.created_by' => $user->id]);
         $this->db->group_end();
 
         $this->db->group_by('tbl_user.username');
@@ -91,6 +102,11 @@ class User extends MY_Model {
     public function getUserGroup()
     {
         return $this->hasMany('usergroup', 'user_id', 'id');
+    }
+
+    public function userDetail()
+    {
+        return $this->hasOne('userdetail', 'user_id', 'id');
     }
 
     public function isHasGroup($group)

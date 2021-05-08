@@ -7,7 +7,7 @@ class Layout
     public $view = null;
     public $viewFolder = null;
     public $layoutsFodler = 'layouts';
-    public $layout = 'lp3i/main';
+    public $layout = 'main';
 
     /**
      * [$view_js description]
