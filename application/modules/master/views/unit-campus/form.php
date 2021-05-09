@@ -14,82 +14,82 @@
             <div class="form-group row">
                 <label class="col-lg-2 col-form-label">ID Unit</label>
                 <div class="col-lg-8">
-                    <?= form_input('Unit[unit_id]', $model->unit_id, [
+                    <?= $this->html->activeTextInput($model, 'unit_id', [
                         'class' => 'form-control',
                         'maxlength' => '4',
                         'onkeypress' => 'return isNumberKey(event)',
                         'disabled' => $readonly
-                    ]); ?>
+                    ]) ?>
                 </div>
             </div>
 
             <div class="form-group row">
                 <label class="col-lg-2 col-form-label">Unit Nama</label>
                 <div class="col-lg-8">
-                    <?= form_input('Unit[unit_name]', $model->unit_name, [
+                    <?= $this->html->activeTextInput($model, 'unit_name', [
                         'class' => 'form-control',
-                        'disabled' => $readonly
-                    ]); ?>
+                        'disabled' => $readonly,
+                    ]) ?>
                 </div>
             </div>
 
             <div class="form-group row">
                 <label class="col-lg-2 col-form-label">Unit Parent ID</label>
                 <div class="col-lg-8">
-                    <?= form_dropdown('Unit[unit_parent_id]', $model->getListParent(true, true), $model->unit_parent_id, [
+                    <?= $this->html->activeDropDownList($model, 'unit_parent_id', $model->getListParent(true, true), [
                         'class' => 'form-control',
-                        'disabled' => $readonly
-                    ]); ?>
+                        'disabled' => $readonly,
+                    ]) ?>
                 </div>
             </div>
 
             <div class="form-group row">
                 <label class="col-lg-2 col-form-label">Unit Parent</label>
                 <div class="col-lg-8">
-                    <?= form_dropdown('Unit[unit_parent]', $model->getListUnitParent(true, true), $model->unit_parent, [
+                    <?= $this->html->activeDropDownList($model, 'unit_parent', $model->getListUnitParent(true, true), [
                         'class' => 'form-control',
-                        'disabled' => $readonly
-                    ]); ?>
+                        'disabled' => $readonly,
+                    ]) ?>
                 </div>
             </div>
 
             <div class="form-group row">
                 <label class="col-lg-2 col-form-label">Unit Level</label>
                 <div class="col-lg-8">
-                    <?= form_dropdown('Unit[unit_level]', UnitCampus::getListLevel(true), $model->unit_level, [
+                    <?= $this->html->activeDropDownList($model, 'unit_level', UnitCampus::getListLevel(true), [
                         'class' => 'form-control',
-                        'disabled' => $readonly
-                    ]); ?>
+                        'disabled' => $readonly,
+                    ]) ?>
                 </div>
             </div>
 
             <div class="form-group row">
                 <label class="col-lg-2 col-form-label">Unit Status</label>
                 <div class="col-lg-8">
-                    <?= form_dropdown('Unit[unit_status]', UnitCampus::getListStatus(true), $model->unit_status, [
+                    <?= $this->html->activeDropDownList($model, 'unit_status', UnitCampus::getListStatus(true), [
                         'class' => 'form-control',
-                        'disabled' => $readonly
-                    ]); ?>
+                        'disabled' => $readonly,
+                    ]) ?>
                 </div>
             </div>
 
             <div class="form-group row">
                 <label class="col-lg-2 col-form-label">Kerjasama</label>
                 <div class="col-lg-8">
-                    <?= form_dropdown('Unit[unit_kerjasama]', UnitCampus::getListKerjasama(true), $model->unit_kerjasama, [
+                    <?= $this->html->activeDropDownList($model, 'unit_kerjasama', UnitCampus::getListKerjasama(true), [
                         'class' => 'form-control',
-                        'disabled' => $readonly
-                    ]); ?>
+                        'disabled' => $readonly,
+                    ]) ?>
                 </div>
             </div>
 
             <div class="form-group row">
                 <label class="col-lg-2 col-form-label">Unit Tipe</label>
                 <div class="col-lg-8">
-                    <?= form_dropdown('Unit[unit_type]', UnitCampus::getListType(true), $model->unit_type, [
+                    <?= $this->html->activeDropDownList($model, 'unit_type', UnitCampus::getListType(true), [
                         'class' => 'form-control',
-                        'disabled' => $readonly
-                    ]); ?>
+                        'disabled' => $readonly,
+                    ]) ?>
                 </div>
             </div>
 
@@ -98,7 +98,9 @@
                     <?= anchor('/master/unit-campus', 'Kembali', ['class' => 'btn-normal btn-outline-danger']); ?>
 
                     <?php if ($readonly !== true): ?>
-                        <?= form_submit('submit', 'Submit', ['class' => 'btn-normal btn-success']); ?>
+                        <?= $this->html->submitButton('Submit', [
+                            'class' => 'btn-normal btn-success'
+                        ]) ?>
                     <?php endif ?>
                 </div>
             </div>

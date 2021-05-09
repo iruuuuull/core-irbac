@@ -82,7 +82,7 @@ class UnitCampusController extends CI_Controller {
 
         $model = new UnitCampus;
 
-        if ($post = $this->input->post('Unit', true)) {
+        if ($post = $this->input->post('UnitCampus', true)) {
             if ($model->insert($post)) {
                 $this->session->set_flashdata('success', 'Simpan data unit berhasil');
 
@@ -112,7 +112,7 @@ class UnitCampusController extends CI_Controller {
             return show_error('Data tidak ditemukan', 404);
         }
 
-        if ($post = $this->input->post('Unit', true)) {
+        if ($post = $this->input->post('UnitCampus', true)) {
             if ($model->update($post, $id)) {
                 $this->session->set_flashdata('success', 'Simpan data unit berhasil');
 
