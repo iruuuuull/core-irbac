@@ -2225,4 +2225,21 @@ class Html
 
         return $pattern;
     }
+
+    /**
+     * Generates an appropriate input ID for the specified attribute name or expression.
+     *
+     * This method converts the result [[getInputName()]] into a valid input ID.
+     * For example, if [[getInputName()]] returns `Post[content]`, this method will return `post-content`.
+     * @param Model $model the model object
+     * @param string $attribute the attribute name or expression. See [[getAttributeName()]] for explanation of attribute expression.
+     * @return string the generated input ID
+     * @throws InvalidArgumentException if the attribute name contains non-word characters.
+     */
+    public static function getInputId($model, $attribute)
+    {
+        // $charset = 'UTF-8';
+        $name = strtolower(static::getInputName($model, $attribute));
+        return str_replace(['[]', '][', '[', ']', ' ', '.'], ['', '-', '-', '', '-', '-'], $name);
+    }
 }
