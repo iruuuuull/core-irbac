@@ -3,20 +3,29 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Pendidikan extends MY_Model {
 
-	public $tableName = 'tbl_m_pendidikan';
+	public $tableName = 'm_pendidikan';
+	public $datatable_columns = ['id', 'kode_pendidikan'];
+	public $datatable_search = ['id', 'kode_pendidikan'];
+	public $blameable = true;
+	public $timestamps = true;
+	public $soft_delete = false;
 
-	public function getListPendidikan()
-	{
-		$this->db->select('id, kode_pendidikan');
-		$query = $this->db->get($this->tableName);
+	 public  function getListPendidikan($dropdown = false)
+    {
+       $pendidikans = $this->findAll();
 
-		$pendidikan = [];
-		foreach ($query->result() as $key => $value) {
-			$pendidikan[$value->id] = $value->kode_pendidikan;
+        if ($dropdown) {
+			$list_pendidikan = ['' => '- Pilih Pendidikan -'];
+		} else {
+			$list_pendidikan = [];
 		}
 
-		return $pendidikan;
-	}
+		foreach ($pendidikans as $key => $pendidikan) {
+			$list_pendidikan[$pendidikan->id] = $pendidikan->kode_pendidikan;
+		}
+
+		return $list_pendidikan;
+    }
 
 }
 
