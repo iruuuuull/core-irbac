@@ -216,19 +216,30 @@ function previewPDF(path) {
 
 /* Ladda button submit */
 // $(document).ready(function() {
-//   Ladda.bind( '[type=submit]', { timeout: 2000 } );
+//   Ladda.bind( '[type=submit]', { timeout: 2000s } );
 // });
 /* Ladda button submit */
 
 /* Default Datepicker */
 $(document).ready(function() {
   $('.datepicker').attr('readonly', true);
-  $('.datepicker').daterangepicker({
+  $('.datepicker').datepicker({
+    singleDatePicker: true,
     format: 'dd-mm-yyyy',
     autoclose: true
   });
 });
 /* Default Datepicker */
+
+/* Default Daterangepicker */
+$(document).ready(function() {
+  $('.daterangepicker').attr('readonly', true);
+  $('.daterangepicker').datepicker({
+    format: 'dd-mm-yyyy',
+    autoclose: true
+  });
+});
+/* Default Daterangepicker */
 
 // MODAL DRAGGABLE
 // $(".draggable-modal").draggable({

@@ -1,7 +1,7 @@
 <?php
 if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class PembimbingAkademik extends MY_Model {
+class Pembimbingakademik extends MY_Model {
 
 	public $tableName = 'Pembimbing_ak';
 	public $datatable_columns = ['id','pa_id', 'pa_name'];
