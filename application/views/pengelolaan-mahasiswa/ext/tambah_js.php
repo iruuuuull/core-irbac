@@ -139,5 +139,9 @@
 
     });
 
+    $(document).on('change','#id_image_mahasiswa',function(){
+         Preview_produk(this);
+    });
+
 
 </script>

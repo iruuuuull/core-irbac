@@ -5,23 +5,33 @@
         if(student_id){
             setTimeout(() => {
             	let id = $('.id_institusi').val();
-            	setSelectedDropdownUnit_id(id);
+            	if(id){
+            		setSelectedDropdownUnit_id(id);
+            	}
 
             	let id_provinsi = $('.id_provinsi').val();
-            	setSelectedDropdownKabupaten(id_provinsi);
+            	if(id_provinsi){
+            		setSelectedDropdownKabupaten(id_provinsi);
+            	}
            }, 500);
 
             setTimeout(() => {
-               let id_kampus = $('.id_kampus').val();
-               setSelectedDropdownId_product(id_kampus);
+            	let id_kampus = $('.id_kampus').val();
+            	if(id_kampus){
+            		setSelectedDropdownId_product(id_kampus);
+            	}
 
-               let id_kabupaten = $('.id_kabupaten').val();
-               setSelectedDropdownKecamatan(id_kabupaten);
+               	let id_kabupaten = $('.id_kabupaten').val();
+               if(id_kabupaten){
+               	setSelectedDropdownKecamatan(id_kabupaten);
+               }
            }, 800);
 
              setTimeout(() => {
                let id_kecamatan = $('.id_kecamatan').val();
-               setSelectedDropdownKelurahan(id_kecamatan);
+               if(id_kecamatan){
+               	setSelectedDropdownKelurahan(id_kecamatan);
+               }
 
            }, 1000);
 

@@ -1,5 +1,10 @@
      <?php
     $readonly = isset($readonly) ? $readonly : false;
+    if($readonly){
+        $disabled = 'disabled="true"';
+    }else{
+        $disabled = '';
+    }
 ?>       
         <?= form_open('', ['enctype' => 'multipart/form-data']); ?>
             <div class="py-1">
@@ -82,14 +87,14 @@
                             <div class="form-mr-2">
                                 <div class="form-inputs">
                                     <label>ID</label>
-                                    <?= form_input('Students[student_id]', $model->id ?? $LastId+1 , [
+                                 <?= form_input('Students[student_id]', $model->student_id ?? $LastId+1 , [
                                         'class' => 'form-control',
                                         'placeholder' => 'ID Mahasiswa',
                                         'onkeypress' => 'return isNumberKey(event)',
-                                        'required' => true,
-                                        'disabled' => $readonly
+                                        'readonly' => true,
+                                        // 'disabled' => $readonly
                                     ]); ?>
-                                    <!--  <?= $this->html->activeTextInput($model, 'student_nik', [
+                                 <!--    <?= $this->html->activeTextInput($model, 'student_id', [
                                         'class' => 'form-control',
                                         'placeholder' => 'ID Mahasiswa',
                                         // 'readonly' => true,
@@ -125,38 +130,33 @@
                                 </div>
                                 <div class="form-inputs">
                                     <label>Tanggal Lahir</label>
-                                    <?= $this->html->activeTextInput($model, 'student_date_birth', [
+<!--                                     <?= $this->html->activeTextInput($model, 'student_date_birth', [
                                         'class' => 'form-control datepicker',
                                         'disabled' => $readonly,
                                         'placeholder' => 'Tanggal Lahir',
-                                    ]) ?>
+                                    ]) ?> -->
+                                    <input type="date" <?= $disabled ?> class="form-control" name="Students[student_date_birth]" value="<?= $model->student_date_birth ?? ''; ?>">
                                 </div>
                                 <div class="form-inputs">
                                     <label>Tempat Lahir</label>
-                                    <?= $this->html->activeTextInput($model, 'student_place_birth', [
+                                     <?= $this->html->activeTextInput($model, 'student_place_birth', [
                                         'class' => 'form-control',
                                         'disabled' => $readonly,
                                         'placeholder' => 'Tempat Lahir',
-                                    ]) ?>
+                                    ]) ?> 
+
                                 </div>
                                 <div class="form-inputs">
                                     <label>Jenis Kelamin</label>
                                     <div class="form-group">
-                                        <label class="radio-button">
-                                            <?= form_radio('Students[student_sex]','Pria',
-                                            ($model->student_sex ?? '' == 'Pria' ? TRUE : FALSE));?>
-                                            <span class="checkmark"></span>
-                                            <?= form_label('Laki-Laki') ?>
-                                        </label>
-                                        <label class="radio-button">
-                                            <?= form_radio('Students[student_sex]','Wanita',
-                                            ($model->student_sex ?? '' == 'Wanita' ? TRUE : FALSE),['style' => 'margin-left:20px;']);?>
-                                            <span class="checkmark"></span>
-                                            <?= form_label('Perempuan') ?>
-                                        </label>
-
-                                      
-
+                                          <label class="radio-button">Laki-Laki
+                                             <input type="radio" <?= ($model->student_sex == 'laki-laki') ? 'checked' : '' ?> name="Students[student_sex]" value="laki-laki">
+                                             <span class="checkmark"></span>
+                                          </label>
+                                          <label class="radio-button">Perempuan
+                                             <input type="radio" <?= ($model->student_sex == 'perempuan') ? 'checked' : ''?> name="Students[student_sex]" value="perempuan">
+                                             <span class="checkmark"></span>
+                                          </label>
                                     </div>
                                 </div>
                                 <div class="form-inputs">
@@ -205,9 +205,9 @@
                                 <?php if(!$model->student_photo == null) : 
                                      $image = base_url().substr($model->student_photo, 2);
                                 ?>
-                                   <img src="<?= $image ?>"></img>
+                                   <img id="preview-gambar" style="width: 250px; height: 250px;" src="<?= $image ?>"></img>
                                 <?php else: ?>
-                                    <img src="<?php echo base_url('./web/assets/lp3i/img/default-user.jpg') ?>" alt="">
+                                    <img id="preview-gambar" style="width: 250px; height: 250px;"  src="<?php echo base_url('./web/assets/lp3i/img/default-user.jpg') ?>" alt="">
                                 <?php endif; ?>
                                 <br>
                                 <?= form_upload('student_photo', '', [
@@ -330,7 +330,7 @@
                             <div class="form-inputs doc-grid-custom">
                                 <label><?= $value->label ?></label>
                                 <input type="text" hidden readonly name='Document[<?= $value->kode_dokumen ?>]'>
-                                <?= form_upload($value->kode_dokumen, '', [
+                                <?= form_upload($value->kode_dokumen,'', [
                                             // 'class' => 'form-control',
                                     'id' => 'id_image_ktp',
                                     // 'disabled' => $readonly,
@@ -434,11 +434,12 @@
                         </div>
                         <div class="form-inputs">
                             <label>Tanggal Lahir</label>
-                            <?= $this->html->activeTextInput($model, 'student_tgl_lahir_ayah', [
+<!--                             <?= $this->html->activeTextInput($model, 'student_tgl_lahir_ayah', [
                                 'class' => 'form-control datepicker',
                                 'disabled' => $readonly,
                                 'placeholder' => 'Tanggal Lahir Ayah',
-                            ]) ?>
+                            ]) ?> -->
+                             <input type="date" <?= $disabled ?> class="form-control" name="Students[student_tgl_lahir_ayah]" value="<?= $model->student_tgl_lahir_ayah ?? ''; ?>">
                         </div>
                         <div class="form-inputs">
                             <label>Pendidikan</label>
@@ -484,11 +485,12 @@
                         </div>
                         <div class="form-inputs">
                             <label>Tanggal Lahir</label>
-                             <?= $this->html->activeTextInput($model, 'student_tgl_lahir_ibu', [
+<!--                              <?= $this->html->activeTextInput($model, 'student_tgl_lahir_ibu', [
                                 'class' => 'form-control datepicker',
                                 'disabled' => $readonly,
                                 'placeholder' => 'Tanggal Lahir Ibu',
-                            ]) ?>
+                            ]) ?> -->
+                            <input type="date" <?= $disabled ?> class="form-control" name="Students[student_tgl_lahir_ibu]" value="<?= $model->student_tgl_lahir_ibu ?? ''; ?>">
                         </div>
                         <div class="form-inputs">
                             <label>Pendidikan</label>

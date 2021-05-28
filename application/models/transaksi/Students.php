@@ -4,15 +4,15 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
 class Students extends MY_Model {
 
 	public $tableName = 'students';
-	public $datatable_columns = ['id', 'student_id', 'student_name', 'unit_id', 'student_ta', 'product_id','student_nim','student_photo','student_status'];
-	public $datatable_search = ['id', 'student_id', 'student_name', 'unit_id', 'student_ta', 'product_id','student_nim','student_photo','student_status'];
+	public $datatable_columns = ['id', 'student_id', 'student_name', 'unit_id', 'unit_parent_id', 'student_ta', 'product_id','student_nim','student_photo','student_status'];
+	public $datatable_search = ['id', 'student_id', 'student_name', 'unit_id', 'unit_parent_id', 'student_ta', 'product_id','student_nim','student_photo','student_status'];
     public $blameable = true;
     public $timestamps = true;
     public $soft_delete = false;
 
-    const STATUS_AKTIF = 1;
-    const STATUS_CUTI = 2;
-    const STATUS_NON_AKTIF = 3;
+    const STATUS_AKTIF = 0;
+    const STATUS_CUTI = 1;
+    const STATUS_NON_AKTIF = 2;
 
 
     // public function rules()
@@ -185,8 +185,8 @@ class Students extends MY_Model {
     }
 
     public function getLastId(){
-        $this->db->select('id');
-        $this->db->order_by('id','DESC');
+        $this->db->select('student_id');
+        $this->db->order_by('student_id','DESC');
         $this->db->limit(1);
         $query = $this->db->get('students');
 

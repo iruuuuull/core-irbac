@@ -46,6 +46,10 @@ class PengelolaanMahasiswaController extends CI_Controller {
         $no = $_POST['start'];
 
         foreach ($list as $field) {
+            $getProduct = $this->Product->get(['product_id' => $field->product_id]);
+            $getUnitParentId = $this->UnitCampus->get(['unit_id' => $field->unit_parent_id]);
+            $getUnitId = $this->UnitCampus->get(['unit_id' => $field->unit_id]);
+            $tingkat = diffYears(date('Y'),substr($field->student_ta, 0,4));
 
             if(!$field->student_photo == null){
                 $image = base_url().substr($field->student_photo, 2);
@@ -58,9 +62,9 @@ class PengelolaanMahasiswaController extends CI_Controller {
             $row = [];
             $row[] = $no;
             $row[] = '<div class="d-flex grid-gap-1 flex-change">'. $gambar .'<div class="d-flex flex-column">'. $field->student_name.'</br>'.$field->student_nim.'</div></div>';
-            $row[] = '<div class="d-flex flex-column campus"><div class="text-primary">'.$field->unit_id.'</div><div class="text-secondary">'.$field->unit_id.'</div></div>';
-            $row[] = '<div class="d-flex flex-column"><span class="years">'.$field->student_ta.'</span><span class="angkatan">'.$field->student_ta.'</span></div>';
-            $row[] = $field->product_id;
+            $row[] = '<div class="d-flex flex-column campus"><div class="text-primary">'.$getUnitParentId->unit_name.'</div><div class="text-secondary">'.$getUnitId->unit_name.'</div></div>';
+            $row[] = '<div class="d-flex flex-column"><span class="years">'.$field->student_ta.'</span><span class="angkatan"> Tingkat '.$tingkat.'</span></div>';
+            $row[] = $getProduct->product_name;
             $row[] = '<span class="btn-status btn-primary">'. $field->getStatusValue() .'</span>';
             $row[] = "
             	<div class='text-center'>
@@ -111,61 +115,60 @@ class PengelolaanMahasiswaController extends CI_Controller {
         $listDokument = $this->Jenisdokumenmahasiswa->getAll();
 
         if ($post = $this->input->post('Students', true)) {
+                $post['student_date_birth'] = $post['student_date_birth'] ? date('Y-m-d', strtotime($post['student_date_birth'])) : '';
+                $post['student_tgl_lahir_ayah'] = $post['student_tgl_lahir_ayah'] ? date('Y-m-d', strtotime($post['student_tgl_lahir_ayah'])) : '';
+                $post['student_tgl_lahir_ibu'] = $post['student_tgl_lahir_ibu'] ? date('Y-m-d', strtotime($post['student_tgl_lahir_ibu'])) : '';
 
-            $post['student_date_birth'] = $post['student_date_birth'] ? date('Y-m-d', strtotime($post['student_date_birth'])) : '';
-            $post['student_tgl_lahir_ayah'] = $post['student_tgl_lahir_ayah'] ? date('Y-m-d', strtotime($post['student_tgl_lahir_ayah'])) : '';
-            $post['student_tgl_lahir_ibu'] = $post['student_tgl_lahir_ibu'] ? date('Y-m-d', strtotime($post['student_tgl_lahir_ibu'])) : '';
+                $upload = true;
+                $this->load->library('upload');
+                if ($post_dokumen = $this->input->post('Document')) {
+                    foreach ($post_dokumen as $key => $value) {
+                        if (!empty($_FILES[$key]['name'])) {
+                            $path = "./web/uploads/dokumen_mahasiswa/{$key}";
 
-            $upload = true;
-            $this->load->library('upload');
-            if ($post_dokumen = $this->input->post('Document')) {
-                foreach ($post_dokumen as $key => $value) {
-                    if (!empty($_FILES[$key]['name'])) {
-                        $path = "./web/uploads/dokumen_mahasiswa/{$key}";
+                            if (!file_exists($path)) {
+                                mkdir($path, 0777, true);
+                            }
 
-                        if (!file_exists($path)) {
-                            mkdir($path, 0777, true);
+                            $config['upload_path'] = $path;
+                            $config['allowed_types'] = 'jpg|png|jpeg';
+                            $config['max_size'] = '1000';
+                            $config['file_name'] = $key.'_'.$post['student_nim'];
+                            $config['overwrite'] = true;
+                            
+                            $this->upload->initialize($config);
+
+                            if ( ! $this->upload->do_upload($key)){
+
+                                $this->session->set_flashdata('danger', $this->upload->display_errors()."<br/>
+                                    ". $this->helpers->valueErrors($model->getErrors(), true) ."
+                                    ");
+
+                                $upload = false;
+                            } else {
+                                $post[$key] = $path .'/'. $this->upload->data("file_name");
+                                $upload = true;
+                            }
                         }
+                     }
+                }
 
-                        $config['upload_path'] = $path;
-                        $config['allowed_types'] = 'jpg|png|jpeg';
-                        $config['max_size'] = '1000';
-                        $config['file_name'] = $key.'_'.$post['student_nim'];
-                        $config['overwrite'] = true;
-                        
-                        $this->upload->initialize($config);
+            
+                if ($model->insert($post)) {
+                    $this->session->set_flashdata('success', 'Simpan data mahasiswa berhasil');
 
-                        if ( ! $this->upload->do_upload($key)){
-
-                            $this->session->set_flashdata('danger', $this->upload->display_errors()."<br/>
-                                ". $this->helpers->valueErrors($model->getErrors(), true) ."
-                                ");
-
-                            $upload = false;
-                        } else {
-                            $post[$key] = $path .'/'. $this->upload->data("file_name");
-                            $upload = true;
-                        }
-                    }
-                 }
-            }
-
-        
-            if ($model->insert($post)) {
-                $this->session->set_flashdata('success', 'Simpan data mahasiswa berhasil');
-
-                 return redirect('/pengelolaan-mahasiswa','refresh');
-            } else {
-                $this->session->set_flashdata('danger', "
-                    Simpan data mahasiswa gagal: <br/>
-                    ". $this->helpers->valueErrors($model->getErrors(), true) ."
-                ");
-            }
+                     return redirect('/pengelolaan-mahasiswa','refresh');
+                } else {
+                    $this->session->set_flashdata('danger', "
+                        Simpan data mahasiswa gagal: <br/>
+                        ". $this->helpers->valueErrors($model->getErrors(), true) ."
+                    ");
+                }
         }
 
         $this->layout->render('form', [
             'model' => $model,
-            'LastId' => $getLastId->id,
+            'LastId' => $getLastId->student_id ?? 0,
             'listDokument' => $listDokument,
             'listInstitusi' => $listInstitusi,
             'listAgama' => $listAgama,
@@ -193,7 +196,6 @@ class PengelolaanMahasiswaController extends CI_Controller {
         $listDokument = $this->Jenisdokumenmahasiswa->getAll();
 
         if ($post = $this->input->post('Students', true)) {
-
             $post['student_date_birth'] = $post['student_date_birth'] ? date('Y-m-d', strtotime($post['student_date_birth'])) : '';
             $post['student_tgl_lahir_ayah'] = $post['student_tgl_lahir_ayah'] ? date('Y-m-d', strtotime($post['student_tgl_lahir_ayah'])) : '';
             $post['student_tgl_lahir_ibu'] = $post['student_tgl_lahir_ibu'] ? date('Y-m-d', strtotime($post['student_tgl_lahir_ibu'])) : '';
@@ -215,6 +217,11 @@ class PengelolaanMahasiswaController extends CI_Controller {
                         $config['file_name'] = $key.'_'.$post['student_nim'];
                         $config['overwrite'] = true;
                         
+
+                        if (file_exists($this->upload->data("file_name"))) {
+                            unlink($this->upload->data("file_name"));
+                        }
+
                         $this->upload->initialize($config);
 
                         if ( ! $this->upload->do_upload($key)){
@@ -248,7 +255,7 @@ class PengelolaanMahasiswaController extends CI_Controller {
         $this->layout->render('form', [
             'id' => $id,
             'model' => $model,
-            'LastId' => $getLastId->id,
+            'LastId' => $getLastId->student_id,
             'listDokument' => $listDokument,
             'listInstitusi' => $listInstitusi,
             'listAgama' => $listAgama,
@@ -283,7 +290,7 @@ class PengelolaanMahasiswaController extends CI_Controller {
         $this->layout->render('form', [
             'id' => $id,
             'model' => $model,
-            'LastId' => $getLastId->id,
+            'LastId' => $getLastId->student_id,
             'listDokument' => $listDokument,
             'listInstitusi' => $listInstitusi,
             'listAgama' => $listAgama,
