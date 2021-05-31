@@ -1,5 +1,10 @@
      <?php
     $readonly = isset($readonly) ? $readonly : false;
+    if($readonly){
+        $disabled = 'disabled="true"';
+    }else{
+        $disabled = '';
+    }
 ?>       
         <?= form_open('', ['enctype' => 'multipart/form-data']); ?>
             <div class="py-1">
@@ -82,14 +87,14 @@
                             <div class="form-mr-2">
                                 <div class="form-inputs">
                                     <label>ID</label>
-                                    <?= form_input('Students[student_id]', $model->id ?? $LastId+1 , [
+                                 <?= form_input('Students[student_id]', $model->student_id ?? $LastId+1 , [
                                         'class' => 'form-control',
                                         'placeholder' => 'ID Mahasiswa',
                                         'onkeypress' => 'return isNumberKey(event)',
-                                        'required' => true,
-                                        'disabled' => $readonly
+                                        'readonly' => true,
+                                        // 'disabled' => $readonly
                                     ]); ?>
-                                    <!--  <?= $this->html->activeTextInput($model, 'student_nik', [
+                                 <!--    <?= $this->html->activeTextInput($model, 'student_id', [
                                         'class' => 'form-control',
                                         'placeholder' => 'ID Mahasiswa',
                                         // 'readonly' => true,
@@ -125,38 +130,33 @@
                                 </div>
                                 <div class="form-inputs">
                                     <label>Tanggal Lahir</label>
-                                    <?= $this->html->activeTextInput($model, 'student_date_birth', [
+<!--                                     <?= $this->html->activeTextInput($model, 'student_date_birth', [
                                         'class' => 'form-control datepicker',
                                         'disabled' => $readonly,
                                         'placeholder' => 'Tanggal Lahir',
-                                    ]) ?>
+                                    ]) ?> -->
+                                    <input type="date" <?= $disabled ?> class="form-control" name="Students[student_date_birth]" value="<?= $model->student_date_birth ?? ''; ?>">
                                 </div>
                                 <div class="form-inputs">
                                     <label>Tempat Lahir</label>
-                                    <?= $this->html->activeTextInput($model, 'student_place_birth', [
+                                     <?= $this->html->activeTextInput($model, 'student_place_birth', [
                                         'class' => 'form-control',
                                         'disabled' => $readonly,
                                         'placeholder' => 'Tempat Lahir',
-                                    ]) ?>
+                                    ]) ?> 
+
                                 </div>
                                 <div class="form-inputs">
                                     <label>Jenis Kelamin</label>
                                     <div class="form-group">
-                                        <label class="radio-button">
-                                            <?= form_radio('Students[student_sex]','Pria',
-                                            ($model->student_sex ?? '' == 'Pria' ? TRUE : FALSE));?>
-                                            <span class="checkmark"></span>
-                                            <?= form_label('Laki-Laki') ?>
-                                        </label>
-                                        <label class="radio-button">
-                                            <?= form_radio('Students[student_sex]','Wanita',
-                                            ($model->student_sex ?? '' == 'Wanita' ? TRUE : FALSE),['style' => 'margin-left:20px;']);?>
-                                            <span class="checkmark"></span>
-                                            <?= form_label('Perempuan') ?>
-                                        </label>
-
-                                      
-
+                                          <label class="radio-button">Laki-Laki
+                                             <input type="radio" <?= ($model->student_sex == 'laki-laki') ? 'checked' : '' ?> name="Students[student_sex]" value="laki-laki">
+                                             <span class="checkmark"></span>
+                                          </label>
+                                          <label class="radio-button">Perempuan
+                                             <input type="radio" <?= ($model->student_sex == 'perempuan') ? 'checked' : ''?> name="Students[student_sex]" value="perempuan">
+                                             <span class="checkmark"></span>
+                                          </label>
                                     </div>
                                 </div>
                                 <div class="form-inputs">
@@ -196,6 +196,7 @@
                                    <?= $this->html->activeTextInput($model, 'student_parent_phone', [
                                         'class' => 'form-control',
                                         'disabled' => $readonly,
+                                        'onkeypress' => 'return isNumberKey(event)',
                                         'placeholder' => 'No. Handphone Orang tua',
                                     ]) ?>
                                 </div>
@@ -205,9 +206,9 @@
                                 <?php if(!$model->student_photo == null) : 
                                      $image = base_url().substr($model->student_photo, 2);
                                 ?>
-                                   <img src="<?= $image ?>"></img>
+                                   <img id="preview-gambar" style="width: 200px; height: 200px;" src="<?= $image ?>"></img>
                                 <?php else: ?>
-                                    <img src="<?php echo base_url('./web/assets/lp3i/img/default-user.jpg') ?>" alt="">
+                                    <img id="preview-gambar" style="width: 200px; height: 200px;"  src="<?php echo base_url('./web/assets/lp3i/img/default-user.jpg') ?>" alt="">
                                 <?php endif; ?>
                                 <br>
                                 <?= form_upload('student_photo', '', [
@@ -238,7 +239,6 @@
                             <?= $this->html->activeDropDownList($model, 'unit_id', ['0' => '- Pilih Kampus -'], [
                                 'exist_unit_id' => $model->unit_id ?? '',
                                 'class' => 'form-control id_kampus',
-                                'tesajalagi' => $model->product_id ?? '',
                                 'disabled' => $readonly,
                             ]) ?>
                         </div>
@@ -268,18 +268,30 @@
                         </div>
                         <div class="form-inputs">
                             <label>Provinsi</label>
-                            <?= $this->html->activeDropDownList($model, 'student_provinsi', $listProvinsi , [
+<!--                        <input class="width-100 id_provinsi" value="<?= $model->student_provinsi ?>" type="text" list="provinsi" name="Students[student_provinsi]" placeholder="- Pilih Provinsi -" />
+                            <datalist id="provinsi">
+                            <?php foreach ($Provinsi as $key => $value) : ?>
+                                    <option value="<?= $value->id ?>"><?= $value->nama ?></option>
+                            <?php endforeach; ?>
+ -->
+                                 </datalist>
+                             <?= $this->html->activeDropDownList($model, 'student_provinsi', $listProvinsi , [
                                 'class' => 'form-control id_provinsi',
                                 'disabled' => $readonly,
-                            ]) ?>
+                            ]) ?> 
                         </div>
                         <div class="form-inputs">
                             <label>Kabupaten</label>
-                            <?= $this->html->activeDropDownList($model, 'student_kabupaten',['0' => '- Pilih Kabupaten -'], [
+<!--                        <input class="width-100 id_kabupaten" value="<?= $model->student_kabupaten ?>" type="text" list="kabupaten" exist_student_kabupaten="<?= $model->student_kabupaten ?>" name="Students[student_kabupaten]" placeholder="- Pilih Provinsi -" />
+                            <datalist id="kabupaten" class="tes_drop">
+                                <option value="0">- Pilih Kabupaten -</option>
+                            </datalist> -->
+
+                             <?= $this->html->activeDropDownList($model, 'student_kabupaten',['0' => '- Pilih Kabupaten -'], [
                                 'exist_student_kabupaten' => $model->student_kabupaten ?? '',
                                 'class' => 'form-control id_kabupaten',
                                 'disabled' => $readonly,
-                            ]) ?>
+                            ]) ?> 
                         </div>
                         <div class="form-inputs">
                             <label>Kecamatan</label>
@@ -302,6 +314,7 @@
                             <?= $this->html->activeTextInput($model, 'student_kodepos', [
                                 'class' => 'form-control',
                                 'disabled' => $readonly,
+                                'onkeypress' => 'return isNumberKey(event)',
                                 'placeholder' => 'Kodepos',
                             ]) ?>
                         </div>
@@ -330,7 +343,7 @@
                             <div class="form-inputs doc-grid-custom">
                                 <label><?= $value->label ?></label>
                                 <input type="text" hidden readonly name='Document[<?= $value->kode_dokumen ?>]'>
-                                <?= form_upload($value->kode_dokumen, '', [
+                                <?= form_upload($value->kode_dokumen,'', [
                                             // 'class' => 'form-control',
                                     'id' => 'id_image_ktp',
                                     // 'disabled' => $readonly,
@@ -349,64 +362,6 @@
                                 <a href="javascript:;" <?= $onclick  ?> class="text-primary d-flex flex-center view-docs"> <?= $label_view ?> </a>
                             </div> 
                        <?php endforeach ?>
-
-                        <!-- <div class="form-inputs doc-grid-custom">
-                            <label>KTP</label>
-                            <input type="text" hidden readonly name='Document[student_ktp]'>
-                            <?= form_upload('student_ktp', '', [
-                                            // 'class' => 'form-control',
-                                    'id' => 'id_image_ktp',
-                                    // 'disabled' => $readonly,
-                                    'accept' => 'image/*,application/pdf'
-                                ]); ?>
-
-
-                            <a href="javascript:;" onclick="return previewPDF('<?= base_url($model->student_ktp) ?>')" class="text-primary d-flex flex-center view-docs"> View</a>
-                        </div> 
-                         <div class="form-inputs doc-grid-custom">
-                            <label>Kartu Keluarga</label>
-                             <input type="text" hidden readonly name='Document[student_kartu_keluarga]'>
-                            <?= form_upload('student_kartu_keluarga', '', [
-                                            // 'class' => 'form-control',
-                                'id' => 'id_image_kartukel',
-                                    // 'disabled' => $readonly,
-                                'accept' => 'image/*,application/pdf'
-                            ]); ?>
-                            <a href="javascript:;" onclick="return previewPDF('<?= base_url($model->student_kartu_keluarga) ?>')" class="text-primary d-flex flex-center view-docs"> View</a>
-                        </div>
-                        <div class="form-inputs doc-grid-custom">
-                            <label>Akte Kelahiran</label>
-                            <input type="text" hidden readonly name='Document[student_akte_kelahiran]'>
-                            <?= form_upload('student_akte_kelahiran', '', [
-                                            // 'class' => 'form-control',
-                                'id' => 'id_image_aktelahir',
-                                    // 'disabled' => $readonly,
-                                'accept' => 'image/*,application/pdf'
-                            ]); ?>
-                              <a href="javascript:;" onclick="return previewPDF('<?= base_url($model->student_akte_kelahiran) ?>')" class="text-primary d-flex flex-center view-docs"> View</a>
-                        </div>
-                        <div class="form-inputs doc-grid-custom">
-                            <label>Ijazah SMU</label>
-                            <input type="text" hidden readonly name='Document[student_ijazah_smu]'>
-                            <?= form_upload('student_ijazah_smu', '', [
-                                            // 'class' => 'form-control',
-                                'id' => 'id_image_ijazah',
-                                    // 'disabled' => $readonly,
-                                'accept' => 'image/*,application/pdf'
-                            ]); ?>
-                            <a href="javascript:;" onclick="return previewPDF('<?= base_url($model->student_ijazah_smu) ?>')" class="text-primary d-flex flex-center view-docs"> View</a>
-                        </div>
-                        <div class="form-inputs doc-grid-custom">
-                            <label>Kartu Mahasiswa</label>
-                            <input type="text" hidden readonly name='Document[student_idcard]'>
-                            <?= form_upload('student_idcard', '', [
-                                            // 'class' => 'form-control',
-                                'id' => 'id_image_ktm',
-                                    // 'disabled' => $readonly,
-                                'accept' => 'image/*,application/pdf'
-                            ]); ?>
-                            <a href="javascript:;" onclick="return previewPDF('<?= base_url($model->student_idcard) ?>')" class="text-primary d-flex flex-center view-docs"> View</a>
-                        </div> -->
                     </div>
                     <!-- tab3 dokumen mahasiswa end -->
 
@@ -421,6 +376,7 @@
                              <?= $this->html->activeTextInput($model, 'student_nik_ayah', [
                                 'class' => 'form-control',
                                 'disabled' => $readonly,
+                                'onkeypress' => 'return isNumberKey(event)',
                                 'placeholder' => 'NIK Ayah',
                             ]) ?>
                         </div>
@@ -434,11 +390,12 @@
                         </div>
                         <div class="form-inputs">
                             <label>Tanggal Lahir</label>
-                            <?= $this->html->activeTextInput($model, 'student_tgl_lahir_ayah', [
+<!--                             <?= $this->html->activeTextInput($model, 'student_tgl_lahir_ayah', [
                                 'class' => 'form-control datepicker',
                                 'disabled' => $readonly,
                                 'placeholder' => 'Tanggal Lahir Ayah',
-                            ]) ?>
+                            ]) ?> -->
+                             <input type="date" <?= $disabled ?> class="form-control" name="Students[student_tgl_lahir_ayah]" value="<?= $model->student_tgl_lahir_ayah ?? ''; ?>">
                         </div>
                         <div class="form-inputs">
                             <label>Pendidikan</label>
@@ -459,6 +416,7 @@
                             <?= $this->html->activeTextInput($model, 'student_penghasilan_ayah', [
                                 'class' => 'form-control',
                                 'disabled' => $readonly,
+                                'onkeypress' => 'return isNumberKey(event)',
                                 'placeholder' => 'Penghasilan Ayah',
                             ]) ?>
                         </div>
@@ -470,6 +428,7 @@
                             <label>NIK</label>
                             <?= $this->html->activeTextInput($model, 'student_nik_ibu', [
                                 'class' => 'form-control',
+                                'onkeypress' => 'return isNumberKey(event)',
                                 'disabled' => $readonly,
                                 'placeholder' => 'NIK Ibu',
                             ]) ?>
@@ -484,11 +443,12 @@
                         </div>
                         <div class="form-inputs">
                             <label>Tanggal Lahir</label>
-                             <?= $this->html->activeTextInput($model, 'student_tgl_lahir_ibu', [
+<!--                              <?= $this->html->activeTextInput($model, 'student_tgl_lahir_ibu', [
                                 'class' => 'form-control datepicker',
                                 'disabled' => $readonly,
                                 'placeholder' => 'Tanggal Lahir Ibu',
-                            ]) ?>
+                            ]) ?> -->
+                            <input type="date" <?= $disabled ?> class="form-control" name="Students[student_tgl_lahir_ibu]" value="<?= $model->student_tgl_lahir_ibu ?? ''; ?>">
                         </div>
                         <div class="form-inputs">
                             <label>Pendidikan</label>
@@ -509,6 +469,7 @@
                             <?= $this->html->activeTextInput($model, 'student_penghasilan_ibu', [
                                 'class' => 'form-control',
                                 'disabled' => $readonly,
+                                'onkeypress' => 'return isNumberKey(event)',
                                 'placeholder' => 'Penghasilan Ibu',
                             ]) ?>
                         </div>

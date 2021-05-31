@@ -606,3 +606,13 @@ if (jQuery().bootstrapSwitch) {
     $(this).bootstrapSwitch('state', $(this).prop('checked'));
   });
 }
+
+function Preview_produk(gambar){
+  if(gambar.files && gambar.files[0]){
+    var lihat = new FileReader();
+    lihat.onload = function(e){
+      tes = $("#preview-gambar").attr('src', e.target.result);
+    }
+    lihat.readAsDataURL(gambar.files[0]);
+  }
+}
