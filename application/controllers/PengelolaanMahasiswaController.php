@@ -113,6 +113,7 @@ class PengelolaanMahasiswaController extends CI_Controller {
         $listPembimbingAkademik = $this->Pembimbingakademik->getListPa(true,true);
         $listProvinsi = $this->Provinsi->getListProvinsi(true,true);
         $listDokument = $this->Jenisdokumenmahasiswa->getAll();
+        $Provinsi = $this->Provinsi->getAll();
 
         if ($post = $this->input->post('Students', true)) {
                 $post['student_date_birth'] = $post['student_date_birth'] ? date('Y-m-d', strtotime($post['student_date_birth'])) : '';
@@ -138,16 +139,33 @@ class PengelolaanMahasiswaController extends CI_Controller {
                             
                             $this->upload->initialize($config);
 
-                            if ( ! $this->upload->do_upload($key)){
+                            if ($this->upload->do_upload($key)){
+                                if($key == 'student_photo'){
+                                     # RESIZE IMAGE WITH JCROP OPTIONS
+                                    $uploaded_file = $this->upload->data();
+                                    unset($config);
+                                       //Compress Image
+                                    $config['image_library'] = 'gd2';
+                                    $config['source_image'] = $path .'/'. $uploaded_file['file_name'];
+                                    $config['quality'] = "100%";
+                                    $config['maintain_ratio'] = TRUE; 
+                                    $config['width'] = 200;
+                                    $config['height'] = 200;
+                                    $config['new_image'] = $path .'/'. $uploaded_file['file_name'];
+                                    $this->load->library('image_lib', $config);
+                                    $this->image_lib->resize();
+                                }
+                                
+                                $post[$key] = $path .'/'. $this->upload->data("file_name");
+                                $upload = true;
+                            } else {
 
                                 $this->session->set_flashdata('danger', $this->upload->display_errors()."<br/>
                                     ". $this->helpers->valueErrors($model->getErrors(), true) ."
                                     ");
 
                                 $upload = false;
-                            } else {
-                                $post[$key] = $path .'/'. $this->upload->data("file_name");
-                                $upload = true;
+
                             }
                         }
                      }
@@ -168,6 +186,7 @@ class PengelolaanMahasiswaController extends CI_Controller {
 
         $this->layout->render('form', [
             'model' => $model,
+            'Provinsi' => $Provinsi,
             'LastId' => $getLastId->student_id ?? 0,
             'listDokument' => $listDokument,
             'listInstitusi' => $listInstitusi,
@@ -182,7 +201,7 @@ class PengelolaanMahasiswaController extends CI_Controller {
     public function actionUpdate($id)
     {
         $this->layout->title = 'Student Management';
-        $this->layout->view_js = ['ext/tambah_js','ext/edit_js'];
+        $this->layout->view_js = 'ext/tambah_js';
         $this->layout->view_css = 'ext/tambah_css';
 
         $model = $this->Students->findOne($id);
@@ -194,6 +213,7 @@ class PengelolaanMahasiswaController extends CI_Controller {
         $listPembimbingAkademik = $this->Pembimbingakademik->getListPa(true,true);
         $listProvinsi = $this->Provinsi->getListProvinsi(true,true);
         $listDokument = $this->Jenisdokumenmahasiswa->getAll();
+        $Provinsi = $this->Provinsi->getAll();
 
         if ($post = $this->input->post('Students', true)) {
             $post['student_date_birth'] = $post['student_date_birth'] ? date('Y-m-d', strtotime($post['student_date_birth'])) : '';
@@ -216,7 +236,6 @@ class PengelolaanMahasiswaController extends CI_Controller {
                         $config['max_size'] = '1000';
                         $config['file_name'] = $key.'_'.$post['student_nim'];
                         $config['overwrite'] = true;
-                        
 
                         if (file_exists($this->upload->data("file_name"))) {
                             unlink($this->upload->data("file_name"));
@@ -224,17 +243,34 @@ class PengelolaanMahasiswaController extends CI_Controller {
 
                         $this->upload->initialize($config);
 
-                        if ( ! $this->upload->do_upload($key)){
+                            if ($this->upload->do_upload($key)){
+                                if($key == 'student_photo'){
+                                     # RESIZE IMAGE WITH JCROP OPTIONS
+                                    $uploaded_file = $this->upload->data();
+                                    unset($config);
+                                       //Compress Image
+                                    $config['image_library'] = 'gd2';
+                                    $config['source_image'] = $path .'/'. $uploaded_file['file_name'];
+                                    $config['quality'] = "100%";
+                                    $config['maintain_ratio'] = TRUE; 
+                                    $config['width'] = 200;
+                                    $config['height'] = 200;
+                                    $config['new_image'] = $path .'/'. $uploaded_file['file_name'];
+                                    $this->load->library('image_lib', $config);
+                                    $this->image_lib->resize();
+                                }
+                                
+                                $post[$key] = $path .'/'. $this->upload->data("file_name");
+                                $upload = true;
+                            } else {
 
-                            $this->session->set_flashdata('danger', $this->upload->display_errors()."<br/>
-                                ". $this->helpers->valueErrors($model->getErrors(), true) ."
-                                ");
+                                $this->session->set_flashdata('danger', $this->upload->display_errors()."<br/>
+                                    ". $this->helpers->valueErrors($model->getErrors(), true) ."
+                                    ");
 
-                            $upload = false;
-                        } else {
-                            $post[$key] = $path .'/'. $this->upload->data("file_name");
-                            $upload = true;
-                        }
+                                $upload = false;
+
+                            }
                     }
                 }
             }
@@ -255,6 +291,7 @@ class PengelolaanMahasiswaController extends CI_Controller {
         $this->layout->render('form', [
             'id' => $id,
             'model' => $model,
+            'Provinsi' => $Provinsi,
             'LastId' => $getLastId->student_id,
             'listDokument' => $listDokument,
             'listInstitusi' => $listInstitusi,
@@ -269,7 +306,7 @@ class PengelolaanMahasiswaController extends CI_Controller {
     public function actionDetail($id)
     {
         $this->layout->title = 'Student Management';
-        $this->layout->view_js = ['ext/tambah_js','ext/edit_js'];
+        $this->layout->view_js = 'ext/tambah_js';
         $this->layout->view_css = 'ext/tambah_css';
 
         $model = $this->Students->findOne($id);
@@ -398,6 +435,7 @@ class PengelolaanMahasiswaController extends CI_Controller {
             ->set_output(json_encode($products));
         }
 
+       
 }
 
 /* End of file MahasiswaController.php */
