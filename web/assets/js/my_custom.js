@@ -216,19 +216,30 @@ function previewPDF(path) {
 
 /* Ladda button submit */
 // $(document).ready(function() {
-//   Ladda.bind( '[type=submit]', { timeout: 2000 } );
+//   Ladda.bind( '[type=submit]', { timeout: 2000s } );
 // });
 /* Ladda button submit */
 
 /* Default Datepicker */
 $(document).ready(function() {
   $('.datepicker').attr('readonly', true);
-  $('.datepicker').daterangepicker({
+  $('.datepicker').datepicker({
+    singleDatePicker: true,
     format: 'dd-mm-yyyy',
     autoclose: true
   });
 });
 /* Default Datepicker */
+
+/* Default Daterangepicker */
+$(document).ready(function() {
+  $('.daterangepicker').attr('readonly', true);
+  $('.daterangepicker').datepicker({
+    format: 'dd-mm-yyyy',
+    autoclose: true
+  });
+});
+/* Default Daterangepicker */
 
 // MODAL DRAGGABLE
 // $(".draggable-modal").draggable({
@@ -594,4 +605,14 @@ if (jQuery().bootstrapSwitch) {
   $(".make-switch").each(function(){
     $(this).bootstrapSwitch('state', $(this).prop('checked'));
   });
+}
+
+function Preview_produk(gambar){
+  if(gambar.files && gambar.files[0]){
+    var lihat = new FileReader();
+    lihat.onload = function(e){
+      tes = $("#preview-gambar").attr('src', e.target.result);
+    }
+    lihat.readAsDataURL(gambar.files[0]);
+  }
 }

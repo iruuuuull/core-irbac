@@ -337,3 +337,18 @@ if (!function_exists('multipleUnset')) {
 		return $arrays;
 	}
 }
+
+
+function diffYears($tahun_sekarang , $tahun_awal){
+  
+  if($tahun_sekarang == $tahun_awal){
+  	$hitungTahun = 1;
+  }elseif($tahun_awal > $tahun_sekarang){
+  	$hitungTahun = '-';
+  }else{
+  	$hitungTahun = $tahun_sekarang - $tahun_awal;
+  }
+  return $hitungTahun;
+
+}
+

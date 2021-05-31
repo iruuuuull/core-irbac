@@ -170,4 +170,41 @@ class UnitCampus extends MY_Model {
         ];
     }
 
+    public  function getListInstitusi($dropdown = false)
+    {
+
+         $institusis = $this->getAll(['unit_parent' => 1]);
+
+        if ($dropdown) {
+            $list_institusi = ['' => '- Pilih Institusi -'];
+        } else {
+            $list_institusi = [];
+        }
+
+        foreach ($institusis as $key => $institusi) {
+            $list_institusi[$institusi->unit_id] = $institusi->unit_name;
+        }
+
+        return $list_institusi;
+    }
+
+    public function getListAllKampus($allkampus = [],$dropdown = false){
+       
+        if (empty($allkampus)) {
+            $allkampus = $this->getAll();
+        }
+
+        if ($dropdown) {
+            $list_allkampus = ['' => '- Pilih Kampus -'];
+        } else {
+            $list_allkampus = [];
+        }
+
+        foreach ($allkampus as $key => $kampus) {
+            $list_allkampus[$kampus->unit_id] = $kampus->unit_name;
+        }
+
+        return $list_allkampus;
+    }
+
 }
