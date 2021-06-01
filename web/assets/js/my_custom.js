@@ -607,7 +607,7 @@ if (jQuery().bootstrapSwitch) {
   });
 }
 
-function Preview_produk(gambar){
+function Preview_image(gambar){
   if(gambar.files && gambar.files[0]){
     var lihat = new FileReader();
     lihat.onload = function(e){
