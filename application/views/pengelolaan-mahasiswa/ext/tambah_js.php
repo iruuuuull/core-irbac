@@ -89,9 +89,10 @@
          /* Act on the event */
          let exist_unit_id = '';
          if(operation == 'selectData'){
-            let exist_unit_id = $('.id_kampus').attr('exist_unit_id');
+            exist_unit_id = $('.id_kampus').attr('exist_unit_id');
             var url_action = '<?= site_url('pengelolaan-mahasiswa/get-kampus/') ?>'+ id;
         }else{
+            exist_unit_id = '';
             var url_action = '<?= site_url('pengelolaan-mahasiswa/get-kampus/') ?>'+ id;
         }
 
@@ -107,7 +108,7 @@
              dropdown_kampus.append(`<option value="">- Pilih Kampus -</option>`);
 
              $.each(data, function(index, val) {
-
+               
                 if(exist_unit_id == index){
                     var select = "selected";
                 }else{
@@ -127,9 +128,10 @@
          /* Act on the event */
             let exist_product_id = '';
          if(operation == 'selectData'){
-            let exist_product_id = $('.id_product').attr('exist_product_id');
+            exist_product_id = $('.id_product').attr('exist_product_id');
             var url_action = '<?= site_url('pengelolaan-mahasiswa/get-product/') ?>'+ id;
         }else{
+            exist_product_id = '';
             var url_action = '<?= site_url('pengelolaan-mahasiswa/get-product/') ?>'+ id;
         }
 
@@ -167,9 +169,10 @@
          /* Act on the event */
             let exist_student_kabupaten = '';
          if(operation == 'selectData'){
-            let exist_student_kabupaten = $('.id_kabupaten').attr('exist_student_kabupaten');
+            exist_student_kabupaten = $('.id_kabupaten').attr('exist_student_kabupaten');
             var url_action = '<?= site_url('pengelolaan-mahasiswa/get-kabupaten/') ?>'+ id;
         }else{
+            exist_student_kabupaten = '';
             var url_action = '<?= site_url('pengelolaan-mahasiswa/get-kabupaten/') ?>'+ id;
         }
 
@@ -203,9 +206,10 @@
         /* Act on the event */
             let exist_student_kecamatan = '';
         if(operation == 'selectData'){
-            let exist_student_kecamatan = $('.id_kecamatan').attr('exist_student_kecamatan');
+            exist_student_kecamatan = $('.id_kecamatan').attr('exist_student_kecamatan');
             var url_action = '<?= site_url('pengelolaan-mahasiswa/get-kecamatan/') ?>'+ id;
         }else{
+            exist_student_kecamatan = '';
             var url_action = '<?= site_url('pengelolaan-mahasiswa/get-kecamatan/') ?>'+ id;
         }
        
@@ -239,12 +243,12 @@
 
      function setSelectedDropdownKelurahan(id,operation){
         /* Act on the event */
-        
-                let exist_student_kelurahan = '';
+            let exist_student_kelurahan = '';
         if(operation == 'selectData'){
-             let exist_student_kelurahan = $('.id_kelurahan').attr('exist_student_kelurahan');
-             var url_action = '<?= site_url('pengelolaan-mahasiswa/get-kelurahan/') ?>'+ id;
+            exist_student_kelurahan = $('.id_kelurahan').attr('exist_student_kelurahan');
+            var url_action = '<?= site_url('pengelolaan-mahasiswa/get-kelurahan/') ?>'+ id;
          }else{
+            exist_student_kelurahan = '';
             var url_action = '<?= site_url('pengelolaan-mahasiswa/get-kelurahan/') ?>'+ id;
         }
 
@@ -276,7 +280,7 @@
      }
 
      $(document).on('change','#id_image_mahasiswa',function(){
-       Preview_produk(this);
+       Preview_image(this);
    });
 
 

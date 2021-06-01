@@ -60,6 +60,8 @@
   /* css header mobile start */
   #Menumobile {
     display: block;
+    position: relative;
+    top: 15px;
   }
 
   .page-header {
@@ -122,10 +124,12 @@
 
   .nav-pills {
     width: auto;
+    flex-wrap: wrap;
   }
 
   .nav-item {
-    width: 35%;
+    width: 100%;
+    margin-bottom: 10px;
   }
 
   .nav-link {
@@ -133,9 +137,14 @@
     padding: 0.5rem;
   }
 
+  .nav-pills .nav-link {
+    height: 80px;
+  }
+
   .tab-content {
     width: 100%;
     padding: 1rem 0;
+    margin-top: 0;
   }
 
   /* css tabs end */
@@ -201,6 +210,69 @@
   }
   /* css modal mobile end */
 
+  /* css page error start */
+  .padding-error {
+    padding: 1rem;
+    min-height: 100vh;
+  }
+
+  .error-title {
+    font-size: 7rem;
+    line-height: 0.75;
+    -webkit-text-stroke-width: 0.25rem;
+    -webkit-text-stroke-color: var(--primary-color);
+    color: transparent;
+  }
+
+  .display-text-info {
+    font-size: 1.45rem;
+    font-weight: 700;
+  }
+
+  .text-info-danger {
+    font-weight: 700;
+    font-size: 1.25rem;
+  }
+
+  .text-display-error {
+    font-size: 1.1rem;
+  }
+  /* css page error end */
+
+  /* css login page start */
+  .login {
+    width: 300px;
+  }
+
+  .box-login i {
+    font-size: 15px;
+    padding: 12px 10px;
+  }
+
+  .box-login input,
+  .box-lock input {
+    width: 100%;
+    padding: 7px;
+    font-size: 15px;
+  }
+
+  .box-lock h6 {
+    margin: 0;
+  }
+  /* css login page end */
+
+  .flex-change {
+    flex-direction: column;
+  }
+
+  .form-img img {
+    width: 150px;
+  }
+
+  .view-docs {
+    justify-content: start;
+  }
+
   /* css footer start */
   footer {
     padding-left: 0;
@@ -264,6 +336,8 @@
   /* css header mobile start */
   #Menumobile {
     display: block;
+    position: relative;
+    top: 15px;
   }
 
   .page-header {
@@ -309,6 +383,10 @@
   .btn-cancel {
     width: 250px;
   }
+
+  .box-lock h6 {
+    margin: 0;
+  }
   /* css btn end */
 
   /* css form start */
@@ -326,10 +404,12 @@
 
   .nav-pills {
     width: auto;
+    flex-wrap: wrap;
   }
 
   .nav-item {
-    width: 35%;
+    width: 100%;
+    margin-bottom: 10px;
   }
 
   .nav-link {
@@ -337,9 +417,14 @@
     padding: 0.5rem;
   }
 
+  .nav-pills .nav-link {
+    height: 80px;
+  }
+
   .tab-content {
     width: 100%;
     padding: 1rem 0;
+    margin-top: 0;
   }
 
   /* css tabs end */
@@ -407,6 +492,37 @@
     gap: 0.75rem;
   }
   /* css modal mobile end */
+
+  /* css page error start */
+  .padding-error {
+    padding: 2rem;
+    min-height: 100vh;
+  }
+  .error-title {
+    font-size: 10.7rem;
+    line-height: 0.75;
+    -webkit-text-stroke-width: 0.3rem;
+    -webkit-text-stroke-color: var(--primary-color);
+    color: transparent;
+  }
+  .display-text-info {
+    font-size: 2.35rem;
+    font-weight: 700;
+  }
+  /* css page error end */
+
+  .flex-change {
+    flex-direction: column;
+  }
+
+  .form-img img {
+    width: 150px;
+  }
+
+  .view-docs {
+    justify-content: start;
+  }
+
   /* css footer start */
   footer {
     padding-left: 0;
@@ -434,11 +550,45 @@
   .detail-wrapper .grid-2 {
     grid-template-columns: 1fr 1fr;
   }
+
+  .padding-error {
+    padding: 3.5rem;
+    min-height: 100vh;
+  }
+
+  .error-title {
+    font-size: 12.7rem;
+    line-height: 0.75;
+    -webkit-text-stroke-width: 0.35rem;
+    -webkit-text-stroke-color: var(--primary-color);
+    color: transparent;
+  }
+
+  .nav-pills {
+    width: auto;
+    flex-wrap: wrap;
+  }
+
+  .nav-pills .nav-link {
+    height: 80px;
+  }
+
+  .tab-content {
+    margin-top: 0;
+  }
+
+  .form-img img {
+    width: 150px;
+  }
 }
 
 @media (min-width: 1025px) and (max-width: 1264px) {
   .grid-custom-view {
     display: grid;
     grid-template-columns: 24% 74%;
+  }
+
+  .nav-pills .nav-link {
+    height: 133px;
   }
 }

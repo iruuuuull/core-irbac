@@ -3,7 +3,7 @@
 <script src="https://kit.fontawesome.com/b4bb8e09b6.js" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous" defer></script>
 <script src="<?= base_url('/web/assets/plugins/bootstrap/js/bootstrap.bundle.min.js') ?>"></script>
-
+<script src="<?= base_url('/web/assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js') ?>" type="text/javascript"></script>
 <script src="<?= base_url('/web/assets/plugins/daterangepicker/moment.min.js') ?>"></script>
 <script src="<?= base_url('/web/assets/plugins/daterangepicker/daterangepicker.js') ?>"></script>
 <script src="<?= base_url('/web/assets/plugins/sweetalert2/sweetalert2.js') ?>"></script>

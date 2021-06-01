@@ -3,7 +3,7 @@
 <link rel="stylesheet" href="<?= base_url('/web/assets/lp3i/css/style.css') ?>">
 <link rel="stylesheet" href="<?= base_url('/web/assets/lp3i/css/content.css') ?>">
 <link rel="stylesheet" href="<?= base_url('/web/assets/lp3i/css/mobile.css') ?>">
-
+<link rel="stylesheet"  href="<?= base_url('/web/assets/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css') ?>">
 <link rel="stylesheet" href="<?= base_url('/web/assets/plugins/daterangepicker/daterangepicker.css') ?>">
 <link rel="stylesheet" href="<?= base_url('/web/assets/plugins/sweetalert2/sweetalert2.css') ?>">
 
