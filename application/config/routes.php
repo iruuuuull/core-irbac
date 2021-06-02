@@ -87,19 +87,19 @@ $route['master/unit-campus/update/(:num)']			= 'master/UnitCampusController/acti
 
 # MASTER  PENGELOLAAN MAHASISWA
 
-$route['pengelolaan-mahasiswa'] 						= 'PengelolaanMahasiswaController/actionIndex';
-$route['pengelolaan-mahasiswa/index'] 					= 'PengelolaanMahasiswaController/actionIndex';
-$route['pengelolaan-mahasiswa/tambah'] 					= 'PengelolaanMahasiswaController/actionTambah';
-$route['pengelolaan-mahasiswa/detail/(:num)'] 			= 'PengelolaanMahasiswaController/actionDetail/$1';
-$route['pengelolaan-mahasiswa/get-data']['post'] 		= 'PengelolaanMahasiswaController/actionGetData';
-$route['pengelolaan-mahasiswa/hapus/(:num)']['post'] 	= 'PengelolaanMahasiswaController/actionHapus/$1';
-$route['pengelolaan-mahasiswa/update/(:num)']['post'] 	= 'PengelolaanMahasiswaController/actionUpdate/$1';
-$route['pengelolaan-mahasiswa/update/(:num)']			= 'PengelolaanMahasiswaController/actionUpdate/$1';
-$route['pengelolaan-mahasiswa/get-kabupaten/(:num)']	= 'PengelolaanMahasiswaController/actionGetKabupaten/$1';
-$route['pengelolaan-mahasiswa/get-kecamatan/(:num)']	= 'PengelolaanMahasiswaController/actionGetKecamatan/$1';
-$route['pengelolaan-mahasiswa/get-kelurahan/(:num)']	= 'PengelolaanMahasiswaController/actionGetKelurahan/$1';
-$route['pengelolaan-mahasiswa/get-kampus/(:num)']		= 'PengelolaanMahasiswaController/actionGetKampus/$1';
-$route['pengelolaan-mahasiswa/get-product/(:num)']		= 'PengelolaanMahasiswaController/actionGetProductByUnit/$1';
+$route['pengelolaan-mahasiswa'] 						= 'master/PengelolaanMahasiswaController/actionIndex';
+$route['pengelolaan-mahasiswa/index'] 					= 'master/PengelolaanMahasiswaController/actionIndex';
+$route['pengelolaan-mahasiswa/tambah'] 					= 'master/PengelolaanMahasiswaController/actionTambah';
+$route['pengelolaan-mahasiswa/detail/(:num)'] 			= 'master/PengelolaanMahasiswaController/actionDetail/$1';
+$route['pengelolaan-mahasiswa/get-data']['post'] 		= 'master/PengelolaanMahasiswaController/actionGetData';
+$route['pengelolaan-mahasiswa/hapus/(:num)']['post'] 	= 'master/PengelolaanMahasiswaController/actionHapus/$1';
+$route['pengelolaan-mahasiswa/update/(:num)']['post'] 	= 'master/PengelolaanMahasiswaController/actionUpdate/$1';
+$route['pengelolaan-mahasiswa/update/(:num)']			= 'master/PengelolaanMahasiswaController/actionUpdate/$1';
+$route['pengelolaan-mahasiswa/get-kabupaten/(:num)']	= 'master/PengelolaanMahasiswaController/actionGetKabupaten/$1';
+$route['pengelolaan-mahasiswa/get-kecamatan/(:num)']	= 'master/PengelolaanMahasiswaController/actionGetKecamatan/$1';
+$route['pengelolaan-mahasiswa/get-kelurahan/(:num)']	= 'master/PengelolaanMahasiswaController/actionGetKelurahan/$1';
+$route['pengelolaan-mahasiswa/get-kampus/(:num)']		= 'master/PengelolaanMahasiswaController/actionGetKampus/$1';
+$route['pengelolaan-mahasiswa/get-product/(:num)']		= 'master/PengelolaanMahasiswaController/actionGetProductByUnit/$1';
 # END MODULE MASTER ROUTES
 
 # START NOTIFIKASI

@@ -149,7 +149,7 @@ class PengelolaanMahasiswaController extends CI_Controller {
                                     $config['source_image'] = $path .'/'. $uploaded_file['file_name'];
                                     $config['quality'] = "100%";
                                     $config['maintain_ratio'] = TRUE; 
-                                    $config['width'] = 200;
+                                    $config['width'] = 215;
                                     $config['height'] = 200;
                                     $config['new_image'] = $path .'/'. $uploaded_file['file_name'];
                                     $this->load->library('image_lib', $config);
@@ -253,7 +253,7 @@ class PengelolaanMahasiswaController extends CI_Controller {
                                     $config['source_image'] = $path .'/'. $uploaded_file['file_name'];
                                     $config['quality'] = "100%";
                                     $config['maintain_ratio'] = TRUE; 
-                                    $config['width'] = 200;
+                                    $config['width'] = 215;
                                     $config['height'] = 200;
                                     $config['new_image'] = $path .'/'. $uploaded_file['file_name'];
                                     $this->load->library('image_lib', $config);
